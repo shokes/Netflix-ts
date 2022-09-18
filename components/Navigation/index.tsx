@@ -4,8 +4,17 @@ import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
 import { NavItemsProps } from '../../interfaces/NavigationTypes';
+import { useEffect } from 'react';
+import getHeroMovie from '../../redux/features/homeSlice';
+import { useDispatch } from 'react-redux';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getHeroMovie());
+  // }, []);
+
   const navItems: NavItemsProps[] = [
     {
       id: 1,
