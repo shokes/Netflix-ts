@@ -19,7 +19,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "redux/features/homeSlice.js"
+    "redux/features/homeSlice.js",
+    "components/Navigation/index.js"
   ],
   "exclude": ["node_modules"]
 }
