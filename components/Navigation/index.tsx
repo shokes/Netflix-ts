@@ -6,15 +6,12 @@ import Link from 'next/link';
 import { NavItemsProps } from '../../interfaces/NavigationTypes';
 import { useEffect } from 'react';
 import getHeroMovie from '../../redux/features/homeSlice';
-import { useAppDispatch } from '../../redux/hooks';
+import { useDispatch } from 'react-redux';
 
 const Navigation = () => {
-  const dispatch = useAppDispatch();
-
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getHeroMovie());
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navItems: NavItemsProps[] = [

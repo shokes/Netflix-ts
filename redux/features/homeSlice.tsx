@@ -41,14 +41,11 @@ const initialState: stateProps = {
 //     .catch((err) => console.log(err));
 // });
 
-export const getHeroMovie: any = createAsyncThunk(
-  'movie/getHeroMovie',
-  async () => {
-    return fetch(originals)
-      .then((resp) => resp.json())
-      .catch((err) => console.log(err));
-  }
-);
+export const getHeroMovie: any = createAsyncThunk('movie/getHeroMovie', () => {
+  return fetch(originals)
+    .then((resp) => resp.json())
+    .catch((err) => console.log(err));
+});
 
 const homeSlice = createSlice({
   name: 'shows',
