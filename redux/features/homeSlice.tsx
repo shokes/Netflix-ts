@@ -1,27 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { StateTypes } from '../../interfaces/homeSliceTypes';
+import requests from '../../requests/requests';
 
-const apiKey = '734e83e292e160a234f82ed2e2c6fb68&';
-
-// APIs
-const originals = `https://api.themoviedb.org/3/discover/tv?api_key=${apiKey}&with_networks=213`;
-// const getTrendingApiUrl = `https://api.themoviedb.org/3/trending/all/week?api_key=${apiKey}&language=en-US`;
-// const topRatedAPI = `https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US`;
-// const actionAPI = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=28`;
-// const comedyAPI = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=35`;
-// const horrorAPI = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=27`;
-// const romanceAPI = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=10749`;
-// const documentariesAPI = `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=99`;
-
-interface stateProps {
-  heroMovie: string[];
-  isLoading: boolean;
-}
-
-const initialState: stateProps = {
+const initialState: StateTypes = {
   heroMovie: [],
-  // trending: [],
-  // topRated: [],
-  // action: [],
+  trending: [],
+  topRated: [],
+  action: [],
   // comedy: [],
   // horror: [],
   // romance: [],
@@ -29,20 +14,43 @@ const initialState: stateProps = {
   isLoading: true,
 };
 
-// getting the movie/shows to be displayed on the hero which the original API
+// fetching movie to be displayed on hero
 
-// interface MovieProps {
-//   action: string;
-// }
+export const getHeroMovie: any = createAsyncThunk(
+  'movie/getHeroMovie',
+  async () => {
+    return fetch(requests.originals)
+      .then((resp) => resp.json())
+      .catch((err) => console.log(err));
+  }
+);
 
-// export const getHeroMovie: any = createAsyncThunk('movie/getHeroMovie', () => {
-//   return fetch(originals)
-//     .then((resp) => resp.json())
-//     .catch((err) => console.log(err));
-// });
+// fetching movies to be displayed as trending
 
-export const getHeroMovie: any = createAsyncThunk('movie/getHeroMovie', () => {
-  return fetch(originals)
+export const getTrendingMovies: any = createAsyncThunk(
+  'movies/getTrendingMovies',
+  async () => {
+    return fetch(requests.getTrending)
+      .then((resp) => resp.json())
+      .catch((err) => console.log(err));
+  }
+);
+
+// fetching movies to be displayed as top rated
+
+export const getTopRated: any = createAsyncThunk(
+  'movies/getTopRated',
+  async () => {
+    return fetch(requests.topRated)
+      .then((resp) => resp.json())
+      .catch((err) => console.log(err));
+  }
+);
+
+// fetching movies to be displayed as action
+
+export const getAction: any = createAsyncThunk('movies/getAction', async () => {
+  return fetch(requests.action)
     .then((resp) => resp.json())
     .catch((err) => console.log(err));
 });
@@ -58,10 +66,45 @@ const homeSlice = createSlice({
     },
     [getHeroMovie.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.heroMovie = action.payload;
-      console.log(state.heroMovie);
+      state.heroMovie = action.payload.results;
     },
     [getHeroMovie.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the trending movies
+    [getTrendingMovies.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getTrendingMovies.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.trending = action.payload.results;
+    },
+    [getTrendingMovies.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the top rated movies
+    [getTopRated.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getTopRated.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.topRated = action.payload.results;
+    },
+    [getTopRated.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the action movies
+    [getAction.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getAction.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.action = action.payload.results;
+    },
+    [getAction.rejected]: (state) => {
       state.isLoading = false;
     },
   },

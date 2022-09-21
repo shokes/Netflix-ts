@@ -3,18 +3,11 @@ import avatar from '../../public/Images/avatar.jpeg';
 import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavItemsProps } from '../../interfaces/NavigationTypes';
+import { NavItemsTypes } from '../../interfaces/NavigationTypes';
 import { useEffect } from 'react';
-import getHeroMovie from '../../redux/features/homeSlice';
-import { useDispatch } from 'react-redux';
 
 const Navigation = () => {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getHeroMovie());
-  }, []);
-
-  const navItems: NavItemsProps[] = [
+  const navItems: NavItemsTypes[] = [
     {
       id: 1,
       title: 'Home',
@@ -42,12 +35,14 @@ const Navigation = () => {
         <div className='flex justify-between items-center'>
           <div className='flex gap-[4rem] items-center'>
             <Link href='/'>
-              <Image
-                src={logo}
-                alt='the netflix logo'
-                width={112}
-                height={80}
-              />
+              <a>
+                <Image
+                  src={logo}
+                  alt='the netflix logo'
+                  width={112}
+                  height={80}
+                />{' '}
+              </a>
             </Link>
 
             <ul className='flex gap-[2rem]'>
