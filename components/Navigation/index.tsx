@@ -6,7 +6,31 @@ import Link from 'next/link';
 import { NavItemsTypes } from '../../interfaces/NavigationTypes';
 import { useEffect } from 'react';
 
+import {
+  getHeroMovie,
+  getTrendingMovies,
+  getTopRated,
+  getAction,
+  getComedy,
+  getHorror,
+  getDocumentaries,
+  getRomance,
+} from '../../redux/features/homeSlice';
+import { useDispatch } from 'react-redux';
+
 const Navigation = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getHeroMovie());
+    dispatch(getTrendingMovies());
+    dispatch(getTopRated());
+    dispatch(getAction());
+    dispatch(getComedy());
+    dispatch(getHorror());
+    dispatch(getRomance());
+    dispatch(getDocumentaries());
+  }, []);
   const navItems: NavItemsTypes[] = [
     {
       id: 1,

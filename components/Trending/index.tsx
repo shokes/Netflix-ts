@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
+import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -36,10 +37,12 @@ const Trending = () => {
 
                 return (
                   <SwiperSlide key={poster}>
-                    <img
+                    <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='trending'
-                      className='w-full h-[9rem] rounded-[0.2rem] transition ease-in-out delay-150 movie  duration-300'
+                      className=' rounded-[0.2rem] transition ease-in-out delay-150 movie  duration-300'
+                      width={300}
+                      height={144}
                     />
                   </SwiperSlide>
                 );

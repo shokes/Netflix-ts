@@ -7,10 +7,10 @@ const initialState: StateTypes = {
   trending: [],
   topRated: [],
   action: [],
-  // comedy: [],
-  // horror: [],
-  // romance: [],
-  // documentaries: [],
+  comedy: [],
+  horror: [],
+  romance: [],
+  documentaries: [],
   isLoading: true,
 };
 
@@ -54,6 +54,44 @@ export const getAction: any = createAsyncThunk('movies/getAction', async () => {
     .then((resp) => resp.json())
     .catch((err) => console.log(err));
 });
+
+// fetching movies to be displayed as comedy
+
+export const getComedy: any = createAsyncThunk('movies/getComedy', async () => {
+  return fetch(requests.comedy)
+    .then((resp) => resp.json())
+    .catch((err) => console.log(err));
+});
+
+// fetching movies to be displayed as horror
+
+export const getHorror: any = createAsyncThunk('movies/getHorror', async () => {
+  return fetch(requests.horror)
+    .then((resp) => resp.json())
+    .catch((err) => console.log(err));
+});
+
+// fetching movies to be displayed as documentaries
+
+export const getDocumentaries: any = createAsyncThunk(
+  'movies/getDocumentaries',
+  async () => {
+    return fetch(requests.documentaries)
+      .then((resp) => resp.json())
+      .catch((err) => console.log(err));
+  }
+);
+
+// fetching movies to be displayed as romance
+
+export const getRomance: any = createAsyncThunk(
+  'movies/getRomance',
+  async () => {
+    return fetch(requests.romance)
+      .then((resp) => resp.json())
+      .catch((err) => console.log(err));
+  }
+);
 
 const homeSlice = createSlice({
   name: 'shows',
@@ -105,6 +143,54 @@ const homeSlice = createSlice({
       state.action = action.payload.results;
     },
     [getAction.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the comedy movies
+    [getComedy.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getComedy.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.comedy = action.payload.results;
+    },
+    [getComedy.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the horror movies
+    [getHorror.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getHorror.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.horror = action.payload.results;
+    },
+    [getHorror.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the documentaries movies
+    [getDocumentaries.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getDocumentaries.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.documentaries = action.payload.results;
+    },
+    [getDocumentaries.rejected]: (state) => {
+      state.isLoading = false;
+    },
+
+    // for the romance movies
+    [getRomance.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getRomance.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.romance = action.payload.results;
+    },
+    [getRomance.rejected]: (state) => {
       state.isLoading = false;
     },
   },

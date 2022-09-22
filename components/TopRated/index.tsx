@@ -1,12 +1,16 @@
-import { useSelector } from 'react-redux/es/exports';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-
+import Image from 'next/image';
 // Import Swiper styles
-import { Pagination, Navigation } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
+// import './styles.css';
+
+// import required modules
+import { Pagination, Navigation } from 'swiper';
 
 const TopRated = () => {
   const { topRated } = useSelector((store: RootState) => store.home);
@@ -35,10 +39,13 @@ const TopRated = () => {
 
                 return (
                   <SwiperSlide key={poster}>
-                    <img
+                    <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='top rated'
-                      className='w-full h-[9rem] rounded-[0.2rem] movie'
+                      className=' rounded-[0.2rem]'
+                      // w-full h-[9rem]
+                      width={300}
+                      height={144}
                     />
                   </SwiperSlide>
                 );

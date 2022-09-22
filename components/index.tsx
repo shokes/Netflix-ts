@@ -4,3 +4,7 @@ export { default as Hero } from './Hero';
 export { default as Trending } from './Trending';
 export { default as TopRated } from './TopRated';
 export { default as Action } from './Action';
+export { default as Comedy } from './Comedy';
+export { default as Horror } from './Horror';
+export { default as Documentaries } from './Documentaries';
+export { default as Romance } from './Romance';
