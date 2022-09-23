@@ -1,13 +1,10 @@
-import { useSelector } from 'react-redux';
 import { RiPlayFill } from 'react-icons/ri';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
-import { RootState } from '../../redux/store';
+import { heroType } from '../../interfaces/heroTypes';
 
-const Hero = () => {
+const Hero = ({ heroMovieProp }: heroType) => {
   const [randomNumber, setRandomNumber] = useState(3);
-
-  const { heroMovie } = useSelector((store: RootState) => store.home);
 
   // randomly picks out a movie from an array of 20 movies
   useEffect(() => {
@@ -15,8 +12,8 @@ const Hero = () => {
     setRandomNumber(numb);
   }, []);
 
-  if (heroMovie.length !== 0) {
-    const { backdrop_path: bg, name, overview } = heroMovie?.[randomNumber];
+  if (heroMovieProp.length !== 0) {
+    const { backdrop_path: bg, name, overview } = heroMovieProp?.[randomNumber];
 
     return (
       <section

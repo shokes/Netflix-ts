@@ -9,6 +9,8 @@ const requests = {
   horror: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=27`,
   romance: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=10749`,
   documentaries: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`,
+  tv: `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
+  tvTopRated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}language=en-US&page=7`,
 };
 
 export default requests;

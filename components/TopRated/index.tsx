@@ -1,6 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
+import { TopRatedType } from '../../interfaces/topRatedTypes';
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
@@ -12,13 +11,14 @@ import 'swiper/css/navigation';
 // import required modules
 import { Pagination, Navigation } from 'swiper';
 
-const TopRated = () => {
-  const { topRated } = useSelector((store: RootState) => store.home);
-  if (topRated.length !== 0) {
+const TopRated = ({ topRatedProp, name }: TopRatedType) => {
+  if (topRatedProp.length !== 0) {
     return (
       <section className='pt-[4rem]'>
         <div className='ml-[2rem]'>
-          <h3 className='font-bold text-2xl text-white mb-2'>Top Rated</h3>
+          <h3 className='font-bold text-2xl capitalize text-white mb-2'>
+            {name ? name : 'tv shows'}
+          </h3>
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
@@ -34,7 +34,7 @@ const TopRated = () => {
           >
             {' '}
             <div className='flex'>
-              {topRated.map((item) => {
+              {topRatedProp.map((item) => {
                 const { poster_path: poster } = item;
 
                 return (

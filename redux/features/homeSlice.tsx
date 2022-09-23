@@ -94,7 +94,7 @@ export const getRomance: any = createAsyncThunk(
 );
 
 const homeSlice = createSlice({
-  name: 'shows',
+  name: 'home',
   initialState,
   reducers: {},
   extraReducers: {

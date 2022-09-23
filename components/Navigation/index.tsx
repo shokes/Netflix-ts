@@ -3,34 +3,9 @@ import avatar from '../../public/Images/avatar.jpeg';
 import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavItemsTypes } from '../../interfaces/NavigationTypes';
-import { useEffect } from 'react';
-
-import {
-  getHeroMovie,
-  getTrendingMovies,
-  getTopRated,
-  getAction,
-  getComedy,
-  getHorror,
-  getDocumentaries,
-  getRomance,
-} from '../../redux/features/homeSlice';
-import { useDispatch } from 'react-redux';
+import { NavItemsTypes } from '../../interfaces/navigationTypes';
 
 const Navigation = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getHeroMovie());
-    dispatch(getTrendingMovies());
-    dispatch(getTopRated());
-    dispatch(getAction());
-    dispatch(getComedy());
-    dispatch(getHorror());
-    dispatch(getRomance());
-    dispatch(getDocumentaries());
-  }, []);
   const navItems: NavItemsTypes[] = [
     {
       id: 1,
@@ -40,17 +15,17 @@ const Navigation = () => {
     {
       id: 2,
       title: 'TV Shows',
-      url: '/tvshows',
+      url: '/TvShows',
     },
     {
       id: 3,
       title: 'Movies',
-      url: '/movies',
+      url: '/Movies',
     },
     {
       id: 4,
       title: 'My List',
-      url: '/list',
+      url: '/List',
     },
   ];
   return (
