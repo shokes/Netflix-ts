@@ -1,5 +1,10 @@
 export interface StateTypes {
-  heroMovie: { backdrop_path: string; name: string; overview: string }[];
+  heroMovie: {
+    backdrop_path: string;
+    name: string;
+    overview: string;
+    first_air_date: string;
+  }[];
   isLoading: boolean;
   trending: { poster_path: string }[];
   topRated: { poster_path: string }[];

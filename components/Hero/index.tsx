@@ -1,11 +1,11 @@
 import { RiPlayFill } from 'react-icons/ri';
 import { RiErrorWarningLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
-import { heroType } from '../../interfaces/heroTypes';
+import { HeroType } from '../../interfaces/heroTypes';
 import Navigation from '../Navigation';
 import HeroModal from '../Modal/heroModal';
 
-const Hero = ({ heroMovieProp }: heroType) => {
+const Hero = ({ heroMovieProp }: HeroType) => {
   const [randomNumber, setRandomNumber] = useState<number>(3);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -25,6 +25,8 @@ const Hero = ({ heroMovieProp }: heroType) => {
       name,
       original_title: title,
       overview,
+      first_air_date: date,
+      vote_average: rating,
     } = heroMovieProp?.[randomNumber];
 
     return (
@@ -36,13 +38,16 @@ const Hero = ({ heroMovieProp }: heroType) => {
           backgroundPosition: 'center',
           height: '700px',
         }}
+        className='relative'
       >
         {' '}
         <Navigation />
         <div className='container'>
-          <div className='w-[29rem] text-white pt-[10rem]'>
+          <div className='w-[29rem] text-white pt-[10rem] '>
             <h3 className='text-6xl font-bold mb-2'>{name ? name : title}</h3>
-            <p className='mb-2'>{overview}</p>
+            <p className='mb-2'>
+              {overview ? overview : 'overview not available at this time'}
+            </p>
             <div className='flex gap-2 '>
               <button
                 className='bg-white text-black px-5 py-1 rounded-[0.2rem] flex items-center gap-1'
@@ -61,8 +66,20 @@ const Hero = ({ heroMovieProp }: heroType) => {
                 </span>
               </button>
             </div>
-            <div>{isOpen && <HeroModal />}</div>
           </div>
+        </div>
+        <div className='absolute right-[19rem] top-[2rem]'>
+          {isOpen && (
+            <HeroModal
+              name={name ? name : title}
+              bg={bg}
+              setIsOpen={setIsOpen}
+              overview={overview}
+              handlePlay={handlePlay}
+              date={date}
+              rating={rating}
+            />
+          )}
         </div>
       </section>
     );

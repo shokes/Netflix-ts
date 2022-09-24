@@ -18,6 +18,7 @@ const Trending = () => {
       <section className=' mt-[-7rem] '>
         <div className='ml-[2rem] '>
           <h3 className='font-bold text-2xl text-white mb-2'>Trending Now</h3>
+
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
