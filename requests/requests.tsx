@@ -11,6 +11,7 @@ const requests = {
   documentaries: `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=99`,
   tv: `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=en-US&page=1`,
   tvTopRated: `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}language=en-US&page=7`,
+  movies: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
 };
 
 export default requests;

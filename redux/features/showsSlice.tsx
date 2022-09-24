@@ -8,7 +8,7 @@ const initialState: StateTypes = {
   isLoading: true,
 };
 
-// fetching hero movie to show on tvshows page
+// fetching hero show to show on tvshows page
 export const getTvShowsHero: any = createAsyncThunk(
   'shows/getTvShowsHero',
   async () => {

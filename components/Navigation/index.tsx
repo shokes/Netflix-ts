@@ -27,9 +27,14 @@ const Navigation = () => {
       title: 'My List',
       url: '/List',
     },
+    {
+      id: 5,
+      title: 'Browse by Languages',
+      url: '/',
+    },
   ];
   return (
-    <section className='bg-black/10 text-white'>
+    <section className='bg-black/20 text-sm text-white'>
       <div className='container'>
         <div className='flex justify-between items-center'>
           <div className='flex gap-[4rem] items-center'>
@@ -39,7 +44,7 @@ const Navigation = () => {
                   src={logo}
                   alt='the netflix logo'
                   width={112}
-                  height={80}
+                  height={50}
                 />{' '}
               </a>
             </Link>
@@ -62,8 +67,8 @@ const Navigation = () => {
               src={avatar}
               alt='avatar'
               className='rounded-sm'
-              width={40}
-              height={40}
+              width={30}
+              height={30}
             />
           </div>
         </div>
