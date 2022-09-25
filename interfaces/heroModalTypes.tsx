@@ -5,5 +5,5 @@ export interface HeroModalType {
   overview: string;
   handlePlay: () => void;
   date: string;
-  rating: number;
+  rating?: number;
 }

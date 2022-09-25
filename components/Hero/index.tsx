@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { HeroType } from '../../interfaces/heroTypes';
 import Navigation from '../Navigation';
 import HeroModal from '../Modal/heroModal';
+import { handlePlay } from '../../helpers';
 
 const Hero = ({ heroMovieProp }: HeroType) => {
   const [randomNumber, setRandomNumber] = useState<number>(3);
@@ -14,10 +15,6 @@ const Hero = ({ heroMovieProp }: HeroType) => {
     const numb = Math.floor(Math.random() * 20);
     setRandomNumber(numb);
   }, []);
-
-  const handlePlay = () => {
-    alert('Lol! please use the real Netflix');
-  };
 
   if (heroMovieProp.length !== 0) {
     const {
@@ -46,7 +43,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
           <div className='w-[29rem] text-white pt-[10rem] '>
             <h3 className='text-6xl font-bold mb-2'>{name ? name : title}</h3>
             <p className='mb-2'>
-              {overview ? overview : 'overview not available at this time'}
+              {overview ? overview : 'Overview not available at this time.'}
             </p>
             <div className='flex gap-2 '>
               <button
@@ -68,7 +65,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
             </div>
           </div>
         </div>
-        <div className='absolute right-[19rem] top-[2rem]'>
+        <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
             <HeroModal
               name={name ? name : title}

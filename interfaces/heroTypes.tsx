@@ -5,6 +5,6 @@ export interface HeroType {
     name: string;
     overview: string;
     first_air_date: string;
-    vote_average: number;
+    vote_average?: number;
   }[];
 }

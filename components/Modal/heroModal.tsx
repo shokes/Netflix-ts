@@ -18,16 +18,14 @@ const HeroModal = ({
     <section className='relative  rounded-xl '>
       <div
         style={{
-          backgroundImage: `url('https://image.tmdb.org/t/p/original/${bg}')`,
+          backgroundImage: `linear-gradient(to bottom, transparent 10%, rgb(20, 20, 20) 100%), url('https://image.tmdb.org/t/p/original/${bg}')`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
           height: '400px',
           width: '800px',
-          // background: 'linear-gradient(, yellow)',
-          // background: '  linear-gradient(red, rgb(20, 20, 20))',
         }}
-        className='rounded-t-xl'
+        className='rounded-t-lg  bg-gradient-to-r from-purple-500 to-pink-500 '
       >
         <div className='pt-[16rem] pl-[2rem]'>
           <h2 className='font-bold text-5xl mb-3  text-white'>{name}</h2>
@@ -45,13 +43,13 @@ const HeroModal = ({
           </div>
         </div>
       </div>
-      <div className=' bg-[#141414] w-[800px] h-[11rem] text-white p-4 rounded-b-xl'>
+      <div className=' bg-[#141414] w-[800px] h-[11rem] text-white p-4 rounded-b-lg'>
         <div className='flex gap-x-3 items-center mb-2'>
           <span>{date ? formatDate(date) : 'N/A'}</span>
           <span className='text-green-500 font-semibold'>{rating}/10</span>
-          <span className='border border-white text-sm '>HD</span>
+          <span className='font-bold text-sm '>HD</span>
         </div>
-        <p>{overview ? overview : 'overview not available at this time'}</p>{' '}
+        <p>{overview ? overview : 'Overview not available at this time.'}</p>{' '}
       </div>
 
       <IoMdClose

@@ -18,7 +18,6 @@ const Trending = () => {
       <section className=' mt-[-7rem] '>
         <div className='ml-[2rem] '>
           <h3 className='font-bold text-2xl text-white mb-2'>Trending Now</h3>
-
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
@@ -41,7 +40,7 @@ const Trending = () => {
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='trending'
-                      className=' rounded-[0.2rem] transition ease-in-out delay-150 movie  duration-300'
+                      className=' rounded-[0.2rem] transition ease-in-out delay-150 movie cursor-pointer  duration-300'
                       width={300}
                       height={144}
                     />
