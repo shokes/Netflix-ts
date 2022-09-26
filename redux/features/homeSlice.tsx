@@ -12,6 +12,7 @@ const initialState: StateTypes = {
   romance: [],
   documentaries: [],
   isLoading: true,
+  // isOpen: false,
 };
 
 // fetching movie to be displayed on hero

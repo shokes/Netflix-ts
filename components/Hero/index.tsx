@@ -5,10 +5,22 @@ import { HeroType } from '../../interfaces/heroTypes';
 import Navigation from '../Navigation';
 import HeroModal from '../Modal/heroModal';
 import { handlePlay } from '../../helpers';
+import { RootState } from '../../redux/store';
+import { useSelector, useDispatch } from 'react-redux';
+import { openModal } from '../../redux/features/modalSlice';
 
 const Hero = ({ heroMovieProp }: HeroType) => {
+  const dispatch = useDispatch();
+
   const [randomNumber, setRandomNumber] = useState<number>(3);
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const { isOpen } = useSelector((store: RootState) => store.modal);
+  const [life, setLife] = useState<any>({});
+  console.log(life);
+
+  const handleClick = (num: number) => {
+    const result = heroMovieProp.find((item) => item.id === num);
+    setLife(result);
+  };
 
   // randomly picks out a movie from an array of 20 movies
   useEffect(() => {
@@ -22,6 +34,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
       name,
       original_title: title,
       overview,
+      id,
       first_air_date: date,
       vote_average: rating,
     } = heroMovieProp?.[randomNumber];
@@ -35,7 +48,6 @@ const Hero = ({ heroMovieProp }: HeroType) => {
           backgroundPosition: 'center',
           height: '700px',
         }}
-        className='relative'
       >
         {' '}
         <Navigation />
@@ -47,6 +59,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
             </p>
             <div className='flex gap-2 '>
               <button
+                type='button'
                 className='bg-white text-black px-5 py-1 rounded-[0.2rem] flex items-center gap-1'
                 onClick={handlePlay}
               >
@@ -54,8 +67,12 @@ const Hero = ({ heroMovieProp }: HeroType) => {
                 <span className='font-semibold'>Play</span>
               </button>
               <button
+                type='button'
                 className='bg-black/[0.6]   px-4 py-1 rounded-[0.2rem] flex items-center gap-1'
-                onClick={() => setIsOpen(true)}
+                onClick={() => {
+                  handleClick(id);
+                  dispatch(openModal());
+                }}
               >
                 <RiErrorWarningLine className='w-[1.8rem] h-[1.8rem] rotate-180 text-white opacity-100' />{' '}
                 <span className='opacity-100 font-semibold text-white'>
@@ -68,13 +85,18 @@ const Hero = ({ heroMovieProp }: HeroType) => {
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
             <HeroModal
-              name={name ? name : title}
-              bg={bg}
-              setIsOpen={setIsOpen}
-              overview={overview}
+              // name={name ? name : title}
+              // bg={bg}
+              // overview={overview}
+              // handlePlay={handlePlay}
+              // date={date}
+              // rating={rating}
+              bg={life.backdrop_path}
+              name={life.name ? life.name : life.original_title}
+              overview={life.overview}
+              rating={life.vote_average}
+              date={life.release_date}
               handlePlay={handlePlay}
-              date={date}
-              rating={rating}
             />
           )}
         </div>

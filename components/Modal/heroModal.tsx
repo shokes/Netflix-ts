@@ -4,16 +4,18 @@ import { IoMdClose } from 'react-icons/io';
 import { RiPlayFill } from 'react-icons/ri';
 import { BiPlus } from 'react-icons/bi';
 import { formatDate } from '../../helpers';
+import { closeModal } from '../../redux/features/modalSlice';
+import { useDispatch } from 'react-redux';
 
 const HeroModal = ({
   name,
   bg,
-  setIsOpen,
   overview,
   handlePlay,
   date,
   rating,
 }: HeroModalType) => {
+  const dispatch = useDispatch();
   return (
     <section className='relative  rounded-xl '>
       <div
@@ -25,7 +27,7 @@ const HeroModal = ({
           height: '400px',
           width: '800px',
         }}
-        className='rounded-t-lg  bg-gradient-to-r from-purple-500 to-pink-500 '
+        className='rounded-t-lg  '
       >
         <div className='pt-[16rem] pl-[2rem]'>
           <h2 className='font-bold text-5xl mb-3  text-white'>{name}</h2>
@@ -46,7 +48,9 @@ const HeroModal = ({
       <div className=' bg-[#141414] w-[800px] h-[11rem] text-white p-4 rounded-b-lg'>
         <div className='flex gap-x-3 items-center mb-2'>
           <span>{date ? formatDate(date) : 'N/A'}</span>
-          <span className='text-green-500 font-semibold'>{rating}/10</span>
+          <span className='text-green-500 font-semibold'>
+            {rating?.toFixed(1)}/10
+          </span>
           <span className='font-bold text-sm '>HD</span>
         </div>
         <p>{overview ? overview : 'Overview not available at this time.'}</p>{' '}
@@ -54,7 +58,7 @@ const HeroModal = ({
 
       <IoMdClose
         className='absolute top-3 right-3 text-3xl p-1 text-white bg-[#141414] rounded-full cursor-pointer'
-        onClick={() => setIsOpen(false)}
+        onClick={() => dispatch(closeModal())}
       />
     </section>
   );

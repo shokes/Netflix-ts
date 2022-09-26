@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit';
 import homeReducer from '../redux/features/homeSlice';
 import showsReducer from '../redux/features/showsSlice';
 import movieReducer from '../redux/features/moviesSlice';
+import modalSlice from './features/modalSlice';
 
 export const store = configureStore({
   reducer: {
     home: homeReducer,
     shows: showsReducer,
     movies: movieReducer,
+    modal: modalSlice,
   },
 });
 

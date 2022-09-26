@@ -1,17 +1,30 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
 import Image from 'next/image';
+import { useState } from 'react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
+import HeroModal from '../Modal/heroModal';
+import { handlePlay } from '../../helpers';
+import { openModal } from '../../redux/features/modalSlice';
 
 const Trending = () => {
+  const dispatch = useDispatch();
+
   const { trending } = useSelector((store: RootState) => store.home);
+  const { isOpen } = useSelector((store: RootState) => store.modal);
+  const [life, setLife] = useState<any>({});
+
+  const handleClick = (num: number) => {
+    const result = trending.find((item) => item.id === num);
+    setLife(result);
+  };
 
   if (trending.length !== 0) {
     return (
@@ -31,16 +44,27 @@ const Trending = () => {
             modules={[Pagination, Navigation, Scrollbar, A11y]}
             // className='mySwiper'
           >
-            <div className='flex'>
+            <div className='flex '>
               {trending.map((item) => {
-                const { poster_path: poster } = item;
+                const {
+                  poster_path: poster,
+                  id,
+                  backdrop_path: bg,
+                  name,
+                } = item;
 
                 return (
-                  <SwiperSlide key={poster}>
+                  <SwiperSlide
+                    key={poster}
+                    onClick={() => {
+                      handleClick(id);
+                      dispatch(openModal());
+                    }}
+                  >
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='trending'
-                      className=' rounded-[0.2rem] transition ease-in-out delay-150 movie cursor-pointer  duration-300'
+                      className=' rounded-[0.3rem] transition ease-in-out delay-150 movie cursor-pointer  duration-300 '
                       width={300}
                       height={144}
                     />
@@ -49,6 +73,19 @@ const Trending = () => {
               })}
             </div>
           </Swiper>
+        </div>
+
+        <div className='z-50 right-[19rem] top-[2rem] fixed'>
+          {isOpen && (
+            <HeroModal
+              bg={life.backdrop_path}
+              name={life.name ? life.name : life.original_title}
+              overview={life.overview}
+              rating={life.vote_average}
+              date={life.release_date}
+              handlePlay={handlePlay}
+            />
+          )}
         </div>
       </section>
     );

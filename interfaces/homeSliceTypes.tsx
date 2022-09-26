@@ -6,7 +6,14 @@ export interface StateTypes {
     first_air_date: string;
   }[];
   isLoading: boolean;
-  trending: { poster_path: string }[];
+  trending: {
+    poster_path: string;
+    id: number;
+    name: string;
+    backdrop_path: string;
+  }[];
+  ///
+  // isOpen: boolean;
   topRated: { poster_path: string }[];
   action: { poster_path: string }[];
   comedy: { poster_path: string }[];
