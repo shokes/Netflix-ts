@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, current } from '@reduxjs/toolkit';
 import { StateTypes } from '../../interfaces/homeSliceTypes';
 import requests from '../../requests/requests';
 
@@ -12,7 +12,14 @@ const initialState: StateTypes = {
   romance: [],
   documentaries: [],
   isLoading: true,
-  // isOpen: false,
+  modalData: {
+    backdrop_path: '',
+    name: '',
+    original_title: '',
+    overview: '',
+    vote_average: 0,
+    first_air_date: '',
+  },
 };
 
 // fetching movie to be displayed on hero
@@ -97,7 +104,27 @@ export const getRomance: any = createAsyncThunk(
 const homeSlice = createSlice({
   name: 'home',
   initialState,
-  reducers: {},
+  reducers: {
+    handleClick: (state: StateTypes, action: any) => {
+      // console.log(current(state.documentaries));
+      // state.modal = action.payload;
+
+      state.modalData = state.trending.find(
+        (item: any) => item.id === action.payload
+      );
+      console.log(current(state.modalData));
+    },
+
+    handle: (state, action) => {
+      //console.log(current(state.heroMovie));
+      // state.modal = action.payload;
+
+      state.modalData = state.heroMovie.find(
+        (item) => item.id === action.payload
+      );
+      //console.log(current(state.modal));
+    },
+  },
   extraReducers: {
     // for the main movie/show on hero
     [getHeroMovie.pending]: (state) => {
@@ -196,5 +223,5 @@ const homeSlice = createSlice({
     },
   },
 });
-
+export const { handleClick, handle } = homeSlice.actions;
 export default homeSlice.reducer;

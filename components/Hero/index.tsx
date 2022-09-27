@@ -8,6 +8,7 @@ import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
+import { handle } from '../../redux/features/homeSlice';
 
 const Hero = ({ heroMovieProp }: HeroType) => {
   const dispatch = useDispatch();
@@ -15,12 +16,23 @@ const Hero = ({ heroMovieProp }: HeroType) => {
   const [randomNumber, setRandomNumber] = useState<number>(3);
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const [life, setLife] = useState<any>({});
-  console.log(life);
+  // console.log(life);
 
-  const handleClick = (num: number) => {
-    const result = heroMovieProp.find((item) => item.id === num);
-    setLife(result);
-  };
+  const { trending, modalData } = useSelector((store: RootState) => store.home);
+
+  const {
+    backdrop_path,
+    name,
+    original_title,
+    overview,
+    vote_average,
+    first_air_date,
+  } = modalData;
+
+  // const handleClick = (num: number) => {
+  //   const result = heroMovieProp.find((item) => item.id === num);
+  //   setLife(result);
+  // };
 
   // randomly picks out a movie from an array of 20 movies
   useEffect(() => {
@@ -70,7 +82,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
                 type='button'
                 className='bg-black/[0.6]   px-4 py-1 rounded-[0.2rem] flex items-center gap-1'
                 onClick={() => {
-                  handleClick(id);
+                  dispatch(handle(id));
                   dispatch(openModal());
                 }}
               >
@@ -85,17 +97,11 @@ const Hero = ({ heroMovieProp }: HeroType) => {
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
             <HeroModal
-              // name={name ? name : title}
-              // bg={bg}
-              // overview={overview}
-              // handlePlay={handlePlay}
-              // date={date}
-              // rating={rating}
-              bg={life.backdrop_path}
-              name={life.name ? life.name : life.original_title}
-              overview={life.overview}
-              rating={life.vote_average}
-              date={life.release_date}
+              bg={backdrop_path}
+              name={name ? name : original_title}
+              overview={overview}
+              rating={vote_average}
+              date={first_air_date}
               handlePlay={handlePlay}
             />
           )}

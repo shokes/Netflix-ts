@@ -13,18 +13,28 @@ import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import HeroModal from '../Modal/heroModal';
 import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
+import { handleClick } from '../../redux/features/homeSlice';
 
 const Trending = () => {
   const dispatch = useDispatch();
-
-  const { trending } = useSelector((store: RootState) => store.home);
   const { isOpen } = useSelector((store: RootState) => store.modal);
-  const [life, setLife] = useState<any>({});
 
-  const handleClick = (num: number) => {
-    const result = trending.find((item) => item.id === num);
-    setLife(result);
-  };
+  const { trending, modalData } = useSelector((store: RootState) => store.home);
+
+  const {
+    backdrop_path,
+    name,
+    original_title,
+    overview,
+    vote_average,
+    first_air_date,
+  } = modalData;
+
+  // this
+  // const handleClick = (num: number) => {
+  //   const result = trending.find((item) => item.id === num);
+  //   setLife(result);
+  // };
 
   if (trending.length !== 0) {
     return (
@@ -57,7 +67,7 @@ const Trending = () => {
                   <SwiperSlide
                     key={poster}
                     onClick={() => {
-                      handleClick(id);
+                      dispatch(handleClick(id));
                       dispatch(openModal());
                     }}
                   >
@@ -78,11 +88,11 @@ const Trending = () => {
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
             <HeroModal
-              bg={life.backdrop_path}
-              name={life.name ? life.name : life.original_title}
-              overview={life.overview}
-              rating={life.vote_average}
-              date={life.release_date}
+              bg={backdrop_path}
+              name={name ? name : original_title}
+              overview={overview}
+              rating={vote_average}
+              date={first_air_date}
               handlePlay={handlePlay}
             />
           )}
