@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { StateTypes } from '../../interfaces/modalSliceTypes';
 
-const initialState = {
+const initialState: StateTypes = {
   isOpen: false,
 };
 

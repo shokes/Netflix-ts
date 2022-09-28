@@ -1,4 +1,3 @@
-import React from 'react';
 import { HeroModalType } from '../../interfaces/heroModalTypes';
 import { IoMdClose } from 'react-icons/io';
 import { RiPlayFill } from 'react-icons/ri';

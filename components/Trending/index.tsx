@@ -13,7 +13,7 @@ import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import HeroModal from '../Modal/heroModal';
 import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
-import { handleClick } from '../../redux/features/homeSlice';
+import { handleComponentModal } from '../../redux/features/homeSlice';
 
 const Trending = () => {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const Trending = () => {
                   <SwiperSlide
                     key={poster}
                     onClick={() => {
-                      dispatch(handleClick(id));
+                      dispatch(handleComponentModal(id));
                       dispatch(openModal());
                     }}
                   >

@@ -8,17 +8,15 @@ import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
-import { handle } from '../../redux/features/homeSlice';
+import { handleHeroModal } from '../../redux/features/homeSlice';
 
 const Hero = ({ heroMovieProp }: HeroType) => {
   const dispatch = useDispatch();
 
   const [randomNumber, setRandomNumber] = useState<number>(3);
   const { isOpen } = useSelector((store: RootState) => store.modal);
-  const [life, setLife] = useState<any>({});
-  // console.log(life);
 
-  const { trending, modalData } = useSelector((store: RootState) => store.home);
+  const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
     backdrop_path,
@@ -28,11 +26,6 @@ const Hero = ({ heroMovieProp }: HeroType) => {
     vote_average,
     first_air_date,
   } = modalData;
-
-  // const handleClick = (num: number) => {
-  //   const result = heroMovieProp.find((item) => item.id === num);
-  //   setLife(result);
-  // };
 
   // randomly picks out a movie from an array of 20 movies
   useEffect(() => {
@@ -82,7 +75,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
                 type='button'
                 className='bg-black/[0.6]   px-4 py-1 rounded-[0.2rem] flex items-center gap-1'
                 onClick={() => {
-                  dispatch(handle(id));
+                  dispatch(handleHeroModal(id));
                   dispatch(openModal());
                 }}
               >

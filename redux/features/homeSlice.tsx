@@ -12,14 +12,7 @@ const initialState: StateTypes = {
   romance: [],
   documentaries: [],
   isLoading: true,
-  modalData: {
-    backdrop_path: '',
-    name: '',
-    original_title: '',
-    overview: '',
-    vote_average: 0,
-    first_air_date: '',
-  },
+  modalData: {},
 };
 
 // fetching movie to be displayed on hero
@@ -105,24 +98,16 @@ const homeSlice = createSlice({
   name: 'home',
   initialState,
   reducers: {
-    handleClick: (state: StateTypes, action: any) => {
-      // console.log(current(state.documentaries));
-      // state.modal = action.payload;
-
-      state.modalData = state.trending.find(
-        (item: any) => item.id === action.payload
-      );
-      console.log(current(state.modalData));
-    },
-
-    handle: (state, action) => {
-      //console.log(current(state.heroMovie));
-      // state.modal = action.payload;
-
+    handleHeroModal: (state, action) => {
       state.modalData = state.heroMovie.find(
         (item) => item.id === action.payload
       );
-      //console.log(current(state.modal));
+    },
+
+    handleComponentModal: (state, action) => {
+      state.modalData = state.trending.find(
+        (item) => item.id === action.payload
+      );
     },
   },
   extraReducers: {
@@ -223,5 +208,6 @@ const homeSlice = createSlice({
     },
   },
 });
-export const { handleClick, handle } = homeSlice.actions;
+export const { handleHeroModal, handleComponentModal } = homeSlice.actions;
+
 export default homeSlice.reducer;

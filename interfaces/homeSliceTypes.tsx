@@ -6,16 +6,19 @@ export interface StateTypes {
     id: number;
     first_air_date: string;
   }[];
+
+  // modalData: {
+  //   backdrop_path: string;
+  //   name: string;
+  //   original_title: string;
+  //   overview: string;
+  //   vote_average: number;
+  //   first_air_date: string;
+  // };
+
+  modalData: any;
   isLoading: boolean;
-  modalData: {
-    backdrop_path: string;
-    name: string;
-    original_title: string;
-    overview: string;
-    vote_average: number;
-    first_air_date: string;
-  };
-  // modalData: any;
+
   trending: {
     poster_path: string;
     id: number;

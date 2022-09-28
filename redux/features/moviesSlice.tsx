@@ -34,18 +34,6 @@ const moviesSlice = createSlice({
     [getMoviesHero.rejected]: (state) => {
       state.isLoading = false;
     },
-
-    // // for the top rated movies
-    // [getTvShowsTopRated.pending]: (state) => {
-    //   state.isLoading = true;
-    // },
-    // [getTvShowsTopRated.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   state.tvShowsTopRated = action.payload.results;
-    // },
-    // [getTvShowsTopRated.rejected]: (state) => {
-    //   state.isLoading = false;
-    // },
   },
 });
 
