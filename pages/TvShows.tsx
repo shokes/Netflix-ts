@@ -31,7 +31,7 @@ const TvShows = () => {
 
       <Hero heroMovieProp={tvShowsHero} />
       <Trending />
-      <TopRated topRatedProp={tvShowsTopRated} name='top rated tv shows' />
+      <TopRated topRatedProp={tvShowsTopRated} title='top rated tv shows' />
       <Comedy />
     </section>
   );

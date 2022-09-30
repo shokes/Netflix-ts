@@ -17,6 +17,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
   const { isOpen } = useSelector((store: RootState) => store.modal);
 
   const { modalData } = useSelector((store: RootState) => store.home);
+  //console.log(modalData);
 
   const {
     backdrop_path,
@@ -75,7 +76,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
                 type='button'
                 className='bg-black/[0.6]   px-4 py-1 rounded-[0.2rem] flex items-center gap-1'
                 onClick={() => {
-                  dispatch(handleHeroModal(id));
+                  dispatch(handleHeroModal([heroMovieProp[randomNumber], id]));
                   dispatch(openModal());
                 }}
               >

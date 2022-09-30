@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
 import Image from 'next/image';
-import { useState } from 'react';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -29,12 +29,6 @@ const Trending = () => {
     vote_average,
     first_air_date,
   } = modalData;
-
-  // this
-  // const handleClick = (num: number) => {
-  //   const result = trending.find((item) => item.id === num);
-  //   setLife(result);
-  // };
 
   if (trending.length !== 0) {
     return (
@@ -67,7 +61,7 @@ const Trending = () => {
                   <SwiperSlide
                     key={poster}
                     onClick={() => {
-                      dispatch(handleComponentModal(id));
+                      dispatch(handleComponentModal([trending,id]));
                       dispatch(openModal());
                     }}
                   >

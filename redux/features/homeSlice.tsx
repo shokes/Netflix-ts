@@ -99,15 +99,12 @@ const homeSlice = createSlice({
   initialState,
   reducers: {
     handleHeroModal: (state, action) => {
-      state.modalData = state.heroMovie.find(
-        (item) => item.id === action.payload
-      );
+      state.modalData = action.payload[0];
     },
 
     handleComponentModal: (state, action) => {
-      state.modalData = state.trending.find(
-        (item) => item.id === action.payload
-      );
+      let data = action.payload[0];
+      state.modalData = data.find((item: any) => item.id === action.payload[1]);
     },
   },
   extraReducers: {

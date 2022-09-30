@@ -1,6 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
+import { handleComponentModal } from '../../redux/features/homeSlice';
+import { handlePlay } from '../../helpers';
+import { openModal } from '../../redux/features/modalSlice';
+import HeroModal from '../Modal/heroModal';
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
@@ -14,6 +18,18 @@ import { Pagination, Navigation } from 'swiper';
 
 const Horror = () => {
   const { horror } = useSelector((store: RootState) => store.home);
+  const dispatch = useDispatch();
+  const { isOpen } = useSelector((store: RootState) => store.modal);
+  const { modalData } = useSelector((store: RootState) => store.home);
+
+  const {
+    backdrop_path,
+    name,
+    original_title,
+    overview,
+    vote_average,
+    first_air_date,
+  } = modalData;
 
   if (horror.length !== 0) {
     return (
@@ -36,14 +52,20 @@ const Horror = () => {
             {' '}
             <div className='flex'>
               {horror.map((item) => {
-                const { poster_path: poster } = item;
+                const { poster_path: poster, id } = item;
 
                 return (
-                  <SwiperSlide key={poster}>
+                  <SwiperSlide
+                    key={poster}
+                    onClick={() => {
+                      dispatch(handleComponentModal([horror, id]));
+                      dispatch(openModal());
+                    }}
+                  >
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='horror'
-                      className=' rounded-[0.2rem]'
+                      className=' rounded-[0.2rem] cursor-pointer'
                       width={300}
                       height={144}
                     />
@@ -52,6 +74,18 @@ const Horror = () => {
               })}
             </div>
           </Swiper>
+        </div>
+        <div className='z-50 right-[19rem] top-[2rem] fixed'>
+          {isOpen && (
+            <HeroModal
+              bg={backdrop_path}
+              name={name ? name : original_title}
+              overview={overview}
+              rating={vote_average}
+              date={first_air_date}
+              handlePlay={handlePlay}
+            />
+          )}
         </div>
       </section>
     );

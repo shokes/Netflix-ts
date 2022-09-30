@@ -15,6 +15,7 @@ const HeroModal = ({
   rating,
 }: HeroModalType) => {
   const dispatch = useDispatch();
+
   return (
     <section className='relative  rounded-xl '>
       <div
@@ -44,7 +45,7 @@ const HeroModal = ({
           </div>
         </div>
       </div>
-      <div className=' bg-[#141414] w-[800px] h-[11rem] text-white p-4 rounded-b-lg'>
+      <div className=' bg-[#141414] w-[800px] h-[12.4rem] text-white p-4 rounded-b-lg'>
         <div className='flex gap-x-3 items-center mb-2'>
           <span>{date ? formatDate(date) : 'N/A'}</span>
           <span className='text-green-500 font-semibold'>
