@@ -5,6 +5,7 @@ import { BiPlus } from 'react-icons/bi';
 import { formatDate } from '../../helpers';
 import { closeModal } from '../../redux/features/modalSlice';
 import { useDispatch } from 'react-redux';
+import { addToList } from '../../redux/features/listSlice';
 
 const HeroModal = ({
   name,
@@ -15,6 +16,14 @@ const HeroModal = ({
   rating,
 }: HeroModalType) => {
   const dispatch = useDispatch();
+
+  const data = {
+    name,
+    bg,
+    overview,
+    date,
+    rating,
+  };
 
   return (
     <section className='relative  rounded-xl '>
@@ -39,7 +48,12 @@ const HeroModal = ({
               <RiPlayFill className='w-[1.8rem] h-[1.8rem]' />{' '}
               <span className='font-semibold'>Play</span>
             </button>
-            <button className='bg-white/20 border-2 border-white  rounded-full'>
+            <button
+              className='bg-white/20 border-2 border-white  rounded-full'
+              onClick={() => {
+                dispatch(addToList(data));
+              }}
+            >
               <BiPlus className='text-white w-[1.8rem] h-[1.8rem]' />
             </button>
           </div>

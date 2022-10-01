@@ -3,6 +3,7 @@ import homeReducer from '../redux/features/homeSlice';
 import showsReducer from '../redux/features/showsSlice';
 import movieReducer from '../redux/features/moviesSlice';
 import modalSlice from './features/modalSlice';
+import listSlice from './features/listSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     shows: showsReducer,
     movies: movieReducer,
     modal: modalSlice,
+    list: listSlice,
   },
 });
 

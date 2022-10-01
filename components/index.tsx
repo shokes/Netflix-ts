@@ -8,3 +8,4 @@ export { default as Comedy } from './Comedy';
 export { default as Horror } from './Horror';
 export { default as Documentaries } from './Documentaries';
 export { default as Romance } from './Romance';
+export { default as Lists } from './Lists';

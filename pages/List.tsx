@@ -1,4 +1,4 @@
-import { Navigation } from '../components';
+import { Navigation, Lists } from '../components';
 import Head from 'next/head';
 
 const List = () => {
@@ -11,7 +11,7 @@ const List = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navigation />
-      <div>List</div>;
+      <Lists />
     </section>
   );
 };
