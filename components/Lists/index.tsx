@@ -16,6 +16,7 @@ import { Pagination, Navigation } from 'swiper';
 
 const Lists = () => {
   const { list } = useSelector((store: RootState) => store.list);
+  // console.log(list);
 
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);

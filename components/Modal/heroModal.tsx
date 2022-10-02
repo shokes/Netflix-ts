@@ -2,10 +2,13 @@ import { HeroModalType } from '../../interfaces/heroModalTypes';
 import { IoMdClose } from 'react-icons/io';
 import { RiPlayFill } from 'react-icons/ri';
 import { BiPlus } from 'react-icons/bi';
+import { IoMdCheckmark } from 'react-icons/io';
 import { formatDate } from '../../helpers';
 import { closeModal } from '../../redux/features/modalSlice';
-import { useDispatch } from 'react-redux';
-import { addToList } from '../../redux/features/listSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addToList, removeFromList } from '../../redux/features/listSlice';
+import { RootState } from '../../redux/store';
+import { useState, useEffect } from 'react';
 
 const HeroModal = ({
   name,
@@ -16,6 +19,18 @@ const HeroModal = ({
   rating,
 }: HeroModalType) => {
   const dispatch = useDispatch();
+  const { list } = useSelector((store: RootState) => store.list);
+
+  const [added, setAdded] = useState(false);
+
+  useEffect(() => {
+    let newArray = list.map((item: any) => item.name);
+    if (newArray.includes(name)) {
+      setAdded(true);
+    } else {
+      setAdded(false);
+    }
+  }, [list]);
 
   const data = {
     name,
@@ -48,14 +63,26 @@ const HeroModal = ({
               <RiPlayFill className='w-[1.8rem] h-[1.8rem]' />{' '}
               <span className='font-semibold'>Play</span>
             </button>
-            <button
-              className='bg-white/20 border-2 border-white  rounded-full'
-              onClick={() => {
-                dispatch(addToList(data));
-              }}
-            >
-              <BiPlus className='text-white w-[1.8rem] h-[1.8rem]' />
-            </button>
+            {!added ? (
+              <button
+                className='bg-white/20 border-2 border-white  rounded-full'
+                onClick={() => {
+                  dispatch(addToList(data));
+                  setAdded(true);
+                }}
+              >
+                <BiPlus className='text-white w-[1.8rem] h-[1.8rem]' />
+              </button>
+            ) : (
+              <button
+                className='bg-white/20 border-2 border-white  rounded-full'
+                onClick={() => {
+                  dispatch(removeFromList(data));
+                }}
+              >
+                <IoMdCheckmark className='text-white w-[1.8rem] h-[1.8rem]' />
+              </button>
+            )}
           </div>
         </div>
       </div>

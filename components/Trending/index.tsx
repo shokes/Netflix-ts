@@ -33,22 +33,28 @@ const Trending = () => {
   if (trending.length !== 0) {
     return (
       <section className=' mt-[-7rem] '>
-        <div className='ml-[2rem] '>
+        <div className='ml-[2rem]  '>
           <h3 className='font-bold text-2xl text-white mb-2'>Trending Now</h3>
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
+            //  slidesPerGroupSkip={1}
+            grabCursor={true}
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
+            speed={1000}
             // pagination={{
             //   clickable: true,
             // }}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
-            // className='mySwiper'
+            // className='overflow-visible'
+            keyboard={{
+              enabled: true,
+            }}
           >
-            <div className='flex '>
+            <div className='flex'>
               {trending.map((item) => {
                 const {
                   poster_path: poster,
@@ -61,14 +67,14 @@ const Trending = () => {
                   <SwiperSlide
                     key={poster}
                     onClick={() => {
-                      dispatch(handleComponentModal([trending,id]));
+                      dispatch(handleComponentModal([trending, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='trending'
-                      className=' rounded-[0.3rem] transition ease-in-out delay-150 movie cursor-pointer  duration-300 '
+                      className=' rounded-[0.3rem]  cursor-pointer   '
                       width={300}
                       height={144}
                     />
