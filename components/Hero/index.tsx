@@ -32,6 +32,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
   useEffect(() => {
     const numb = Math.floor(Math.random() * 20);
     setRandomNumber(numb);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (heroMovieProp.length !== 0) {

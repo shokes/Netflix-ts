@@ -3,6 +3,7 @@ import avatar from '../../public/Images/avatar.jpeg';
 import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
+//import { NavItemsTypes } from '../../interfaces/navigationTypes';
 import { NavItemsTypes } from '../../interfaces/navigationTypes';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';

@@ -24,6 +24,7 @@ const Movies = () => {
     dispatch(getTrendingMovies());
     dispatch(getDocumentaries());
     dispatch(getRomance());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <section>

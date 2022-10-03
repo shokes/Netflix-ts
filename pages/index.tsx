@@ -41,6 +41,7 @@ const Home: NextPage = () => {
     dispatch(getHorror());
     dispatch(getRomance());
     dispatch(getDocumentaries());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { heroMovie, topRated } = useSelector((store: RootState) => store.home);
   return (

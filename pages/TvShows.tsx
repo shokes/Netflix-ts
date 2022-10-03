@@ -17,6 +17,7 @@ const TvShows = () => {
     dispatch(getTrendingMovies());
     dispatch(getComedy());
     dispatch(getTvShowsTopRated());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { tvShowsHero, tvShowsTopRated } = useSelector(
     (store: RootState) => store.shows
