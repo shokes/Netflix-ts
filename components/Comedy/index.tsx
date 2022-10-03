@@ -48,6 +48,7 @@ const Comedy = () => {
             //   clickable: true,
             // }}
             navigation={true}
+            speed={1000}
             modules={[Pagination, Navigation]}
             className='mySwiper'
           >

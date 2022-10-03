@@ -46,6 +46,7 @@ const Trending = () => {
             // pagination={{
             //   clickable: true,
             // }}
+            speed={1000}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
             // className='overflow-visible'

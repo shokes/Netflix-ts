@@ -49,6 +49,7 @@ const TopRated = ({ topRatedProp, title }: TopRatedType) => {
             // pagination={{
             //   clickable: true,
             // }}
+            speed={1000}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
             // className='overflow-visible'
@@ -72,7 +73,7 @@ const TopRated = ({ topRatedProp, title }: TopRatedType) => {
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='top rated'
-                      className=' rounded-[0.2rem] cursor-pointer'
+                      className=' rounded-[0.3rem]  cursor-pointer '
                       // w-full h-[9rem]
                       width={300}
                       height={144}

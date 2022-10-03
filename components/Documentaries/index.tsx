@@ -14,7 +14,7 @@ import 'swiper/css/navigation';
 // import './styles.css';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation, Scrollbar, A11y } from 'swiper';
 
 const Documentaries = () => {
   const { documentaries } = useSelector((store: RootState) => store.home);
@@ -39,15 +39,21 @@ const Documentaries = () => {
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
+            slidesPerGroupSkip={1}
+            grabCursor={true}
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
             // pagination={{
             //   clickable: true,
             // }}
+            speed={1000}
             navigation={true}
-            modules={[Pagination, Navigation]}
-            className='mySwiper'
+            modules={[Pagination, Navigation, Scrollbar, A11y]}
+            // className='overflow-visible'
+            keyboard={{
+              enabled: true,
+            }}
           >
             <div className='flex'>
               {documentaries.map((item) => {
@@ -64,7 +70,7 @@ const Documentaries = () => {
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='documentary'
-                      className=' rounded-[0.2rem] cursor-pointer'
+                      className=' rounded-[0.3rem]  cursor-pointer '
                       // w-full h-[9rem]
                       width={300}
                       height={144}

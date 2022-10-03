@@ -12,7 +12,7 @@ import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper';
+import { Pagination, Navigation, Scrollbar, A11y } from 'swiper';
 
 const Action = () => {
   const { action } = useSelector((store: RootState) => store.home);
@@ -35,17 +35,24 @@ const Action = () => {
         <div className='ml-[2rem]'>
           <h3 className='font-bold text-2xl text-white mb-3'>Action</h3>
           <Swiper
+            speed={1000}
             slidesPerView={5}
             spaceBetween={4}
+            slidesPerGroupSkip={1}
+            grabCursor={true}
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
             // pagination={{
             //   clickable: true,
             // }}
+
             navigation={true}
-            modules={[Pagination, Navigation]}
-            className='mySwiper'
+            modules={[Pagination, Navigation, Scrollbar, A11y]}
+            // className='overflow-visible'
+            keyboard={{
+              enabled: true,
+            }}
           >
             <div className='flex'>
               {action.map((item) => {
