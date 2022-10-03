@@ -65,22 +65,22 @@ const HeroModal = ({
             </button>
             {!added ? (
               <button
-                className='bg-white/20 border-2 border-white  rounded-full'
+                className='bg-white/20 border-2 border-white  rounded-full p-2'
                 onClick={() => {
                   dispatch(addToList(data));
                   setAdded(true);
                 }}
               >
-                <BiPlus className='text-white w-[1.8rem] h-[1.8rem]' />
+                <BiPlus className='text-white w-[1.3rem] h-[1.3rem] ' />
               </button>
             ) : (
               <button
-                className='bg-white/20 border-2 border-white  rounded-full'
+                className='bg-white/20 border-2 border-white  rounded-full p-2'
                 onClick={() => {
                   dispatch(removeFromList(data));
                 }}
               >
-                <IoMdCheckmark className='text-white w-[1.8rem] h-[1.8rem]' />
+                <IoMdCheckmark className='text-white w-[1.3rem] h-[1.3rem]' />
               </button>
             )}
           </div>

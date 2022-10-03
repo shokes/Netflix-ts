@@ -38,12 +38,11 @@ const Trending = () => {
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
-            //  slidesPerGroupSkip={1}
+            slidesPerGroupSkip={1}
             grabCursor={true}
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            speed={1000}
             // pagination={{
             //   clickable: true,
             // }}
@@ -74,7 +73,7 @@ const Trending = () => {
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='trending'
-                      className=' rounded-[0.3rem]  cursor-pointer   '
+                      className=' rounded-[0.3rem]  cursor-pointer '
                       width={300}
                       height={144}
                     />
