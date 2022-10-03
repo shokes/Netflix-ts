@@ -1,6 +1,6 @@
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
+//const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
 
-// const API_KEY = '734e83e292e160a234f82ed2e2c6fb68&';
+const API_KEY = '734e83e292e160a234f82ed2e2c6fb68&';
 
 const requests = {
   originals: `https://api.themoviedb.org/3/discover/tv?api_key=${API_KEY}&with_networks=213`,
