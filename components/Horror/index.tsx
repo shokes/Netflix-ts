@@ -14,7 +14,7 @@ import 'swiper/css/navigation';
 // import './styles.css';
 
 // import required modules
-import { Pagination, Navigation } from 'swiper';
+import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 
 const Horror = () => {
   const { horror } = useSelector((store: RootState) => store.home);
@@ -39,15 +39,17 @@ const Horror = () => {
           <Swiper
             slidesPerView={5}
             spaceBetween={4}
+            slidesPerGroupSkip={1}
+            grabCursor={true}
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            // pagination={{
-            //   clickable: true,
-            // }}
+            speed={1000}
             navigation={true}
-            modules={[Pagination, Navigation]}
-            className='mySwiper'
+            modules={[Pagination, Navigation, Scrollbar, A11y]}
+            keyboard={{
+              enabled: true,
+            }}
           >
             {' '}
             <div className='flex'>
@@ -65,7 +67,7 @@ const Horror = () => {
                     <Image
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='horror'
-                      className=' rounded-[0.2rem] cursor-pointer'
+                      className=' rounded-[0.3rem]  cursor-pointer '
                       width={300}
                       height={144}
                     />
