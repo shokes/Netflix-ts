@@ -3,40 +3,38 @@ import avatar from '../../public/Images/avatar.jpeg';
 import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
-//import { NavItemsTypes } from '../../interfaces/navigationTypes';
 import { NavItemsTypes } from '../../interfaces/navigationTypes';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 
-const navItems: NavItemsTypes[] = [
-  {
-    id: 1,
-    title: 'Home',
-    url: '/',
-  },
-  {
-    id: 2,
-    title: 'TV Shows',
-    url: '/TvShows',
-  },
-  {
-    id: 3,
-    title: 'Movies',
-    url: '/Movies',
-  },
-  {
-    id: 4,
-    title: 'My List',
-    url: '/List',
-  },
-  {
-    id: 5,
-    title: 'Browse by Languages',
-    url: '/',
-  },
-];
-
 const Navigation = () => {
+  const navItems: NavItemsTypes[] = [
+    {
+      id: 1,
+      title: 'Home',
+      url: '/',
+    },
+    {
+      id: 2,
+      title: 'TV Shows',
+      url: '/TvShows',
+    },
+    {
+      id: 3,
+      title: 'Movies',
+      url: '/Movies',
+    },
+    {
+      id: 4,
+      title: 'My List',
+      url: '/List',
+    },
+    {
+      id: 5,
+      title: 'Browse by Languages',
+      url: '/',
+    },
+  ];
   const [ref, inView] = useInView();
 
   const [view, setView] = useState(false);
