@@ -8,6 +8,34 @@ import { NavItemsTypes } from '../../interfaces/navigationTypes';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 
+const navItems: NavItemsTypes[] = [
+  {
+    id: 1,
+    title: 'Home',
+    url: '/',
+  },
+  {
+    id: 2,
+    title: 'TV Shows',
+    url: '/TvShows',
+  },
+  {
+    id: 3,
+    title: 'Movies',
+    url: '/Movies',
+  },
+  {
+    id: 4,
+    title: 'My List',
+    url: '/List',
+  },
+  {
+    id: 5,
+    title: 'Browse by Languages',
+    url: '/',
+  },
+];
+
 const Navigation = () => {
   const [ref, inView] = useInView();
 
@@ -21,33 +49,6 @@ const Navigation = () => {
     }
   }, [inView]);
 
-  const navItems: NavItemsTypes[] = [
-    {
-      id: 1,
-      title: 'Home',
-      url: '/',
-    },
-    {
-      id: 2,
-      title: 'TV Shows',
-      url: '/TvShows',
-    },
-    {
-      id: 3,
-      title: 'Movies',
-      url: '/Movies',
-    },
-    {
-      id: 4,
-      title: 'My List',
-      url: '/List',
-    },
-    {
-      id: 5,
-      title: 'Browse by Languages',
-      url: '/',
-    },
-  ];
   return (
     <section>
       <span ref={ref}></span>

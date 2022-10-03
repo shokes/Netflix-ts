@@ -30,6 +30,7 @@ const HeroModal = ({
     } else {
       setAdded(false);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   const data = {
