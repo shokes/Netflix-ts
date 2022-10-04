@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addToList, removeFromList } from '../../redux/features/listSlice';
 import { RootState } from '../../redux/store';
 import { useState, useEffect } from 'react';
+import errorImage from '../../public/Images/404.png';
+import { url } from 'inspector';
 
 const HeroModal = ({
   name,
@@ -46,6 +48,7 @@ const HeroModal = ({
       <div
         style={{
           backgroundImage: `linear-gradient(to bottom, transparent 10%, rgb(20, 20, 20) 100%), url('https://image.tmdb.org/t/p/original/${bg}')`,
+
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',

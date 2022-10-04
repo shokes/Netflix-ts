@@ -5,6 +5,7 @@ import { RootState } from '../../redux/store';
 import { handlePlay } from '../../helpers';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
+
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
@@ -68,6 +69,13 @@ const Documentaries = () => {
                     }}
                   >
                     <Image
+                      // src={`${poster ? 'https://image.tmdb.org/t/p/original/${poster}' : 'errorImage'`}
+                      // src={
+                      //   poster
+                      //     ? `https://image.tmdb.org/t/p/original/${poster} `
+                      //     : errorImage
+                      // }
+
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='documentary'
                       className=' rounded-[0.3rem]  cursor-pointer '
