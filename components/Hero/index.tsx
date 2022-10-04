@@ -56,10 +56,9 @@ const Hero = ({ heroMovieProp }: HeroType) => {
           height: '700px',
         }}
       >
-        {' '}
         <Navigation />
-        <div className='container'>
-          <div className='w-[30rem]  text-white pt-[10rem] '>
+        <div className='container relative'>
+          <div className='w-[30rem] text-white absolute top-[10rem]'>
             <h3 className='text-6xl font-bold mb-2'>{name ? name : title}</h3>
             <p className='mb-2'>
               {overview ? overview : 'Overview not available at this time.'}

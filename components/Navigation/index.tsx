@@ -48,23 +48,24 @@ const Navigation = () => {
   }, [inView]);
 
   return (
-    <section>
+    <section className=''>
       <span ref={ref}></span>
       <div
-        className={`bg-black/20  text-sm  w-full text-white duration-1000 ${
+        className={`bg-black/20 fixed  text-sm  w-full text-white duration-1000 ${
           view ? 'block' : 'fixed bg-black z-40'
         }`}
       >
+        {' '}
         <div className='container'>
           <div className='flex justify-between items-center'>
             <div className='flex gap-[4rem] items-center'>
               <Link href='/'>
-                <a>
+                <a className='py-2'>
                   <Image
                     src={logo}
                     alt='the netflix logo'
-                    width={112}
-                    height={50}
+                    width={100}
+                    height={30}
                   />{' '}
                 </a>
               </Link>
