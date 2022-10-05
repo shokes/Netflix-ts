@@ -32,7 +32,7 @@ const Action = () => {
   if (action.length !== 0) {
     return (
       <section className='pt-[4rem]'>
-        <div className='ml-[2rem]'>
+        <div className='container  '>
           <h3 className='font-bold text-2xl text-white mb-3'>Action</h3>
           <Swiper
             speed={1000}

@@ -33,7 +33,7 @@ const Trending = () => {
   if (trending.length !== 0) {
     return (
       <section className=' mt-[-7rem] '>
-        <div className='ml-[2rem]  '>
+        <div className='container  '>
           <h3 className='font-bold text-2xl text-white mb-2'>Trending Now</h3>
           <Swiper
             slidesPerView={5}
@@ -43,13 +43,9 @@ const Trending = () => {
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            // pagination={{
-            //   clickable: true,
-            // }}
             speed={1000}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
-            // className='overflow-visible'
             keyboard={{
               enabled: true,
             }}

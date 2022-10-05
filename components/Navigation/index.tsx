@@ -37,7 +37,7 @@ const Navigation = () => {
   ];
   const [ref, inView] = useInView();
 
-  const [view, setView] = useState(false);
+  const [view, setView] = useState<boolean>(false);
 
   useEffect(() => {
     if (inView) {
@@ -48,10 +48,10 @@ const Navigation = () => {
   }, [inView]);
 
   return (
-    <section className=''>
+    <section>
       <span ref={ref}></span>
       <div
-        className={`bg-black/20 fixed  text-sm  w-full text-white duration-1000 ${
+        className={`bg-black/20  fixed  text-sm  w-full text-white duration-1000 ${
           view ? 'block' : 'fixed bg-black z-40'
         }`}
       >
@@ -60,17 +60,17 @@ const Navigation = () => {
           <div className='flex justify-between items-center'>
             <div className='flex gap-[4rem] items-center'>
               <Link href='/'>
-                <a className='py-2'>
+                <a className='py-4'>
                   <Image
                     src={logo}
                     alt='the netflix logo'
-                    width={100}
-                    height={30}
+                    width={95}
+                    height={25}
                   />{' '}
                 </a>
               </Link>
 
-              <ul className='flex gap-[2rem]'>
+              <ul className='flex items-center gap-[2rem]'>
                 {navItems.map((item) => {
                   return (
                     <Link key={item.id} href={item.url}>
