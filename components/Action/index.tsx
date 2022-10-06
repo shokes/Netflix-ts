@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { handlePlay } from '../../helpers';
 import Image from 'next/image';
 // Import Swiper styles
@@ -21,7 +21,10 @@ const Action = () => {
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -82,7 +85,9 @@ const Action = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              id={id}
+              poster_path={poster_path}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

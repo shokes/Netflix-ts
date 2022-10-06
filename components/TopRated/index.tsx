@@ -1,6 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { TopRatedType } from '../../interfaces/topRatedTypes';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { handlePlay } from '../../helpers';
@@ -23,7 +23,10 @@ const TopRated = ({ topRatedProp, title }: TopRatedType) => {
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -86,7 +89,9 @@ const TopRated = ({ topRatedProp, title }: TopRatedType) => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

@@ -1,4 +1,4 @@
-import { HeroModalType } from '../../interfaces/heroModalTypes';
+import { ModalType } from '../../interfaces/heroModalTypes';
 import { IoMdClose } from 'react-icons/io';
 import { RiPlayFill } from 'react-icons/ri';
 import { BiPlus } from 'react-icons/bi';
@@ -10,14 +10,17 @@ import { addToList, removeFromList } from '../../redux/features/listSlice';
 import { RootState } from '../../redux/store';
 import { useState, useEffect } from 'react';
 
-const HeroModal = ({
+const Modal = ({
+  poster_path,
   name,
+  id,
   bg,
   overview,
   handlePlay,
   date,
   rating,
-}: HeroModalType) => {
+}: ModalType) => {
+  //console.log(id, date, rating);
   const dispatch = useDispatch();
   const { list } = useSelector((store: RootState) => store.list);
 
@@ -34,7 +37,9 @@ const HeroModal = ({
   }, [list]);
 
   const data = {
+    poster_path,
     name,
+    id,
     bg,
     overview,
     date,
@@ -46,7 +51,6 @@ const HeroModal = ({
       <div
         style={{
           backgroundImage: `linear-gradient(to bottom, transparent 10%, rgb(20, 20, 20) 100%), url('https://image.tmdb.org/t/p/original/${bg}')`,
-
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
@@ -107,4 +111,4 @@ const HeroModal = ({
   );
 };
 
-export default HeroModal;
+export default Modal;

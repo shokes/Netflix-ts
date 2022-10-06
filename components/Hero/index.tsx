@@ -3,7 +3,8 @@ import { RiErrorWarningLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import { HeroType } from '../../interfaces/heroTypes';
 import Navigation from '../Navigation';
-import HeroModal from '../Modal/heroModal';
+//import HeroModal from '../Modal';
+import Modal from '../Modal';
 import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
 import { useSelector, useDispatch } from 'react-redux';
@@ -20,7 +21,10 @@ const Hero = ({ heroMovieProp }: HeroType) => {
   //console.log(modalData);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -58,7 +62,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
       >
         <Navigation />
         <div className='container relative'>
-          <div className='w-[30rem] text-white absolute top-[10rem]'>
+          <div className='w-[34rem] text-white absolute top-[10rem]'>
             <h3 className='text-6xl font-bold mb-2'>{name ? name : title}</h3>
             <p className='mb-2'>
               {overview ? overview : 'Overview not available at this time.'}
@@ -90,7 +94,9 @@ const Hero = ({ heroMovieProp }: HeroType) => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

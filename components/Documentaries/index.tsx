@@ -1,18 +1,15 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { RootState } from '../../redux/store';
 import { handlePlay } from '../../helpers';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
-
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-// import './styles.css';
 
 // import required modules
 import { Pagination, Navigation, Scrollbar, A11y } from 'swiper';
@@ -24,7 +21,10 @@ const Documentaries = () => {
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -45,13 +45,9 @@ const Documentaries = () => {
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            // pagination={{
-            //   clickable: true,
-            // }}
             speed={1000}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
-            // className='overflow-visible'
             keyboard={{
               enabled: true,
             }}
@@ -69,17 +65,9 @@ const Documentaries = () => {
                     }}
                   >
                     <Image
-                      // src={`${poster ? 'https://image.tmdb.org/t/p/original/${poster}' : 'errorImage'`}
-                      // src={
-                      //   poster
-                      //     ? `https://image.tmdb.org/t/p/original/${poster} `
-                      //     : errorImage
-                      // }
-
                       src={`https://image.tmdb.org/t/p/original/${poster}`}
                       alt='documentary'
                       className=' rounded-[0.3rem]  cursor-pointer '
-                      // w-full h-[9rem]
                       width={300}
                       height={144}
                     />
@@ -91,7 +79,9 @@ const Documentaries = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

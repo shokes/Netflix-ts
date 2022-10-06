@@ -7,15 +7,6 @@ export interface StateTypes {
     first_air_date: string;
   }[];
 
-  // modalData: {
-  //   backdrop_path: string;
-  //   name: string;
-  //   original_title: string;
-  //   overview: string;
-  //   vote_average: number;
-  //   first_air_date: string;
-  // };
-
   modalData: any;
   isLoading: boolean;
 
@@ -33,12 +24,3 @@ export interface StateTypes {
   documentaries: { poster_path: string; id: number }[];
   romance: { poster_path: string; id: number }[];
 }
-
-// export interface Modal {
-//   backdrop_path: string;
-//   name: string;
-//   original_title: string;
-//   overview: string;
-//   vote_average: number;
-//   first_air_date: string;
-// }

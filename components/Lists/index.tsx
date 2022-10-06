@@ -1,35 +1,33 @@
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { useSelector, useDispatch } from 'react-redux';
-import { Swiper, SwiperSlide } from 'swiper/react';
 import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
+import { openModal } from '../../redux/features/modalSlice';
+import { handleComponentModal } from '../../redux/features/homeSlice';
 import Image from 'next/image';
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-// import './styles.css';
-
-// import required modules
-import { Pagination, Navigation } from 'swiper';
+import { useState } from 'react';
 
 const Lists = () => {
   const { list } = useSelector((store: RootState) => store.list);
-  // console.log(list);
-
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
     vote_average,
     first_air_date,
   } = modalData;
+
+  // doing this instead of getting the backdrop_path(background) because it returns undefined on the second render. you can console.log to observe the behavior
+
+  const [background, setBackground] = useState('');
 
   if (list.length !== 0) {
     return (
@@ -39,12 +37,18 @@ const Lists = () => {
           <div className='grid grid-cols-5 gap-4'>
             {list.map((item: any) => {
               return (
-                <div key={item.name}>
+                <div
+                  key={item.name}
+                  onClick={() => {
+                    dispatch(handleComponentModal([list, item.id]));
+                    setBackground(item.bg);
+                    dispatch(openModal());
+                  }}
+                >
                   <Image
-                    src={`https://image.tmdb.org/t/p/original/${item.bg}`}
+                    src={`https://image.tmdb.org/t/p/original/${item.poster_path}`}
                     alt={item.name}
-                    className=' rounded-[0.2rem] cursor-pointer'
-                    // w-full h-[9rem]
+                    className=' rounded-[0.3rem] cursor-pointer'
                     width={300}
                     height={144}
                   />
@@ -55,8 +59,10 @@ const Lists = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
-              bg={backdrop_path}
+            <Modal
+              poster_path={poster_path}
+              id={id}
+              bg={background}
               name={name ? name : original_title}
               overview={overview}
               rating={vote_average}

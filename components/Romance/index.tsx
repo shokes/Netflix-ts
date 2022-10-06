@@ -1,4 +1,4 @@
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { handlePlay } from '../../helpers';
@@ -21,8 +21,12 @@ const Romance = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
+  //console.log(modalData);
 
   const {
+    poster_path,
+    date,
+    id,
     backdrop_path,
     name,
     original_title,
@@ -83,7 +87,9 @@ const Romance = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

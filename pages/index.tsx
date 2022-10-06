@@ -44,6 +44,7 @@ const Home: NextPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const { heroMovie, topRated } = useSelector((store: RootState) => store.home);
+  //  console.log(heroMovie);
   return (
     <>
       <Head>

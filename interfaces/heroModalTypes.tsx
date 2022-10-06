@@ -1,9 +1,10 @@
-export interface HeroModalType {
+export interface ModalType {
   name: string | undefined;
   bg: string;
-  // setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  id: number;
   overview: string;
   handlePlay: () => void;
   date: string;
   rating?: number;
+  poster_path: string;
 }

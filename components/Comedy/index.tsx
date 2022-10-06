@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/store';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { handlePlay } from '../../helpers';
 import Image from 'next/image';
 // Import Swiper React components
@@ -25,7 +25,10 @@ const Comedy = () => {
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -80,7 +83,9 @@ const Comedy = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

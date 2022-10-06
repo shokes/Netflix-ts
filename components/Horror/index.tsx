@@ -4,7 +4,7 @@ import { RootState } from '../../redux/store';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
@@ -23,7 +23,10 @@ const Horror = () => {
   const { modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -79,7 +82,9 @@ const Horror = () => {
         </div>
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              id={id}
+              poster_path={poster_path}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}

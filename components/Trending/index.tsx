@@ -10,7 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 // import required modules
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
-import HeroModal from '../Modal/heroModal';
+import Modal from '../Modal';
 import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
 import { handleComponentModal } from '../../redux/features/homeSlice';
@@ -22,7 +22,10 @@ const Trending = () => {
   const { trending, modalData } = useSelector((store: RootState) => store.home);
 
   const {
+    id,
     backdrop_path,
+
+    poster_path,
     name,
     original_title,
     overview,
@@ -83,7 +86,9 @@ const Trending = () => {
 
         <div className='z-50 right-[19rem] top-[2rem] fixed'>
           {isOpen && (
-            <HeroModal
+            <Modal
+              poster_path={poster_path}
+              id={id}
               bg={backdrop_path}
               name={name ? name : original_title}
               overview={overview}
