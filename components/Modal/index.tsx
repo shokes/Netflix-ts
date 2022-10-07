@@ -1,4 +1,4 @@
-import { ModalType } from '../../interfaces/ModalTypes';
+import { ModalType } from '../../interfaces/modalTypes';
 import { IoMdClose } from 'react-icons/io';
 import { RiPlayFill } from 'react-icons/ri';
 import { BiPlus } from 'react-icons/bi';
