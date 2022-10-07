@@ -11,13 +11,12 @@ const listSlice = createSlice({
   reducers: {
     addToList: (state, action) => {
       state.list.push(action.payload);
-
     },
 
     removeFromList: (state, action) => {
-      const { name } = action.payload;
+      const { id } = action.payload;
 
-      state.list = state.list.filter((item: any) => item.name !== name);
+      state.list = state.list.filter((item: any) => item.id !== id);
     },
   },
 });

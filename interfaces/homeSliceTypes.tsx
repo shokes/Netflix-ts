@@ -5,6 +5,7 @@ export interface StateTypes {
     overview: string;
     id: number;
     first_air_date: string;
+    poster_path: string;
   }[];
 
   modalData: any;
@@ -15,6 +16,7 @@ export interface StateTypes {
     id: number;
     name: string;
     backdrop_path: string;
+    release_date: string;
   }[];
 
   topRated: { poster_path: string; id: number }[];

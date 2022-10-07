@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
 import Image from 'next/image';
-
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -11,7 +10,6 @@ import 'swiper/css/navigation';
 // import required modules
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 import Modal from '../Modal';
-import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 
@@ -20,18 +18,6 @@ const Trending = () => {
   const { isOpen } = useSelector((store: RootState) => store.modal);
 
   const { trending, modalData } = useSelector((store: RootState) => store.home);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
 
   if (trending.length !== 0) {
     return (
@@ -55,23 +41,18 @@ const Trending = () => {
           >
             <div className='flex'>
               {trending.map((item) => {
-                const {
-                  poster_path: poster,
-                  id,
-                  backdrop_path: bg,
-                  name,
-                } = item;
+                const { poster_path, id } = item;
 
                 return (
                   <SwiperSlide
-                    key={poster}
+                    key={id}
                     onClick={() => {
                       dispatch(handleComponentModal([trending, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${poster}`}
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt='trending'
                       className=' rounded-[0.3rem]  cursor-pointer '
                       width={300}
@@ -84,19 +65,8 @@ const Trending = () => {
           </Swiper>
         </div>
 
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              poster_path={poster_path}
-              id={id}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

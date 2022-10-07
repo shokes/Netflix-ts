@@ -7,5 +7,6 @@ export interface HeroType {
     first_air_date: string;
     vote_average?: number;
     id: number;
+    poster_path: string;
   }[];
 }

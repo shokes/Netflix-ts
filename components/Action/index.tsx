@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
 import Modal from '../Modal';
-import { handlePlay } from '../../helpers';
 import Image from 'next/image';
 // Import Swiper styles
 import 'swiper/css';
@@ -10,7 +9,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
-
 // import required modules
 import { Pagination, Navigation, Scrollbar, A11y } from 'swiper';
 
@@ -19,18 +17,6 @@ const Action = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
 
   if (action.length !== 0) {
     return (
@@ -46,34 +32,28 @@ const Action = () => {
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            // pagination={{
-            //   clickable: true,
-            // }}
-
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
-            // className='overflow-visible'
             keyboard={{
               enabled: true,
             }}
           >
             <div className='flex'>
               {action.map((item) => {
-                const { poster_path: poster, id } = item;
+                const { poster_path, id } = item;
 
                 return (
                   <SwiperSlide
-                    key={poster}
+                    key={id}
                     onClick={() => {
                       dispatch(handleComponentModal([action, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${poster}`}
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt='action'
-                      className=' rounded-[0.2rem] cursor-pointer'
-                      // w-full h-[9rem]
+                      className=' rounded-[0.3rem] cursor-pointer'
                       width={300}
                       height={144}
                     />
@@ -83,19 +63,8 @@ const Action = () => {
             </div>
           </Swiper>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              id={id}
-              poster_path={poster_path}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

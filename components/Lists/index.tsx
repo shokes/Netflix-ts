@@ -1,33 +1,15 @@
 import Modal from '../Modal';
 import { useSelector, useDispatch } from 'react-redux';
-import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/features/modalSlice';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import Image from 'next/image';
-import { useState } from 'react';
 
 const Lists = () => {
   const { list } = useSelector((store: RootState) => store.list);
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
-
-  // doing this instead of getting the backdrop_path(background) because it returns undefined on the second render. you can console.log to observe the behavior
-
-  const [background, setBackground] = useState('');
 
   if (list.length !== 0) {
     return (
@@ -38,10 +20,10 @@ const Lists = () => {
             {list.map((item: any) => {
               return (
                 <div
-                  key={item.name}
+                  key={item.id}
                   onClick={() => {
                     dispatch(handleComponentModal([list, item.id]));
-                    setBackground(item.bg);
+
                     dispatch(openModal());
                   }}
                 >
@@ -57,19 +39,8 @@ const Lists = () => {
             })}
           </div>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              poster_path={poster_path}
-              id={id}
-              bg={background}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

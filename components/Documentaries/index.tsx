@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import Modal from '../Modal';
 import { RootState } from '../../redux/store';
-import { handlePlay } from '../../helpers';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
 import Image from 'next/image';
@@ -19,18 +18,6 @@ const Documentaries = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
 
   if (documentaries.length !== 0) {
     return (
@@ -54,18 +41,18 @@ const Documentaries = () => {
           >
             <div className='flex'>
               {documentaries.map((item) => {
-                const { poster_path: poster, id } = item;
+                const { poster_path, id } = item;
 
                 return (
                   <SwiperSlide
-                    key={poster}
+                    key={id}
                     onClick={() => {
                       dispatch(handleComponentModal([documentaries, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${poster}`}
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt='documentary'
                       className=' rounded-[0.3rem]  cursor-pointer '
                       width={300}
@@ -77,19 +64,8 @@ const Documentaries = () => {
             </div>
           </Swiper>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              poster_path={poster_path}
-              id={id}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

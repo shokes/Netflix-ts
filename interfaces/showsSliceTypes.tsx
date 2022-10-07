@@ -7,8 +7,9 @@ export interface StateTypes {
     first_air_date: string;
     vote_average?: number;
     id: number;
+    poster_path: string;
   }[];
   isLoading: boolean;
-  //trending: { poster_path: string }[];
+
   tvShowsTopRated: { poster_path: string; id: number }[];
 }

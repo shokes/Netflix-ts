@@ -1,7 +1,6 @@
 import Modal from '../Modal';
 import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { handlePlay } from '../../helpers';
 import { RootState } from '../../redux/store';
 import Image from 'next/image';
 // Import Swiper styles
@@ -10,9 +9,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import { openModal } from '../../redux/features/modalSlice';
-
-// import './styles.css';
-
 // import required modules
 import { Pagination, Navigation, Scrollbar, A11y } from 'swiper';
 
@@ -21,19 +17,7 @@ const Romance = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
-  //console.log(modalData);
-
-  const {
-    poster_path,
-    date,
-    id,
-    backdrop_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
+  
 
   if (romance.length !== 0) {
     return (
@@ -48,34 +32,29 @@ const Romance = () => {
             slidesPerGroup={5}
             loop={true}
             loopFillGroupWithBlank={false}
-            // pagination={{
-            //   clickable: true,
-            // }}
             speed={1000}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
-            // className='overflow-visible'
             keyboard={{
               enabled: true,
             }}
           >
             <div className='flex'>
               {romance.map((item) => {
-                const { poster_path: poster, id } = item;
+                const { poster_path, id } = item;
 
                 return (
                   <SwiperSlide
-                    key={poster}
+                    key={id}
                     onClick={() => {
                       dispatch(handleComponentModal([romance, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${poster}`}
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt='romance'
                       className=' rounded-[0.3rem]  cursor-pointer '
-                      // w-full h-[9rem]
                       width={300}
                       height={144}
                     />
@@ -85,19 +64,8 @@ const Romance = () => {
             </div>
           </Swiper>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              poster_path={poster_path}
-              id={id}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

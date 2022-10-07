@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { RootState } from '../../redux/store';
 import { handleComponentModal } from '../../redux/features/homeSlice';
-import { handlePlay } from '../../helpers';
 import { openModal } from '../../redux/features/modalSlice';
 import Modal from '../Modal';
 import Image from 'next/image';
@@ -10,9 +9,6 @@ import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-
-// import './styles.css';
-
 // import required modules
 import { A11y, Navigation, Pagination, Scrollbar } from 'swiper';
 
@@ -21,18 +17,6 @@ const Horror = () => {
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
 
   if (horror.length !== 0) {
     return (
@@ -57,18 +41,18 @@ const Horror = () => {
             {' '}
             <div className='flex'>
               {horror.map((item) => {
-                const { poster_path: poster, id } = item;
+                const { poster_path, id } = item;
 
                 return (
                   <SwiperSlide
-                    key={poster}
+                    key={id}
                     onClick={() => {
                       dispatch(handleComponentModal([horror, id]));
                       dispatch(openModal());
                     }}
                   >
                     <Image
-                      src={`https://image.tmdb.org/t/p/original/${poster}`}
+                      src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt='horror'
                       className=' rounded-[0.3rem]  cursor-pointer '
                       width={300}
@@ -80,19 +64,8 @@ const Horror = () => {
             </div>
           </Swiper>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              id={id}
-              poster_path={poster_path}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );

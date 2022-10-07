@@ -5,8 +5,9 @@ export interface StateTypes {
     overview: string;
     id: number;
     first_air_date: string;
+    poster_path: string;
   }[];
   isLoading: boolean;
-  //trending: { poster_path: string }[];
+
   moviesTopRated: { poster_path: string }[];
 }

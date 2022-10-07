@@ -18,19 +18,6 @@ const Hero = ({ heroMovieProp }: HeroType) => {
   const { isOpen } = useSelector((store: RootState) => store.modal);
 
   const { modalData } = useSelector((store: RootState) => store.home);
-  //console.log(modalData);
-
-  const {
-    id,
-    backdrop_path,
-
-    poster_path,
-    name,
-    original_title,
-    overview,
-    vote_average,
-    first_air_date,
-  } = modalData;
 
   // randomly picks out a movie from an array of 20 movies
   useEffect(() => {
@@ -41,19 +28,18 @@ const Hero = ({ heroMovieProp }: HeroType) => {
 
   if (heroMovieProp.length !== 0) {
     const {
-      backdrop_path: bg,
+      backdrop_path,
+
       name,
-      original_title: title,
+      original_title,
       overview,
       id,
-      first_air_date: date,
-      vote_average: rating,
     } = heroMovieProp?.[randomNumber];
 
     return (
       <section
         style={{
-          backgroundImage: `url('https://image.tmdb.org/t/p/original/${bg}')`,
+          backgroundImage: `url('https://image.tmdb.org/t/p/original/${backdrop_path}')`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
           backgroundPosition: 'center',
@@ -63,7 +49,9 @@ const Hero = ({ heroMovieProp }: HeroType) => {
         <Navigation />
         <div className='container relative'>
           <div className='w-[34rem] text-white absolute top-[10rem]'>
-            <h3 className='text-6xl font-bold mb-2'>{name ? name : title}</h3>
+            <h3 className='text-6xl font-bold mb-2'>
+              {name ? name : original_title}
+            </h3>
             <p className='mb-2'>
               {overview ? overview : 'Overview not available at this time.'}
             </p>
@@ -92,19 +80,8 @@ const Hero = ({ heroMovieProp }: HeroType) => {
             </div>
           </div>
         </div>
-        <div className='z-50 right-[19rem] top-[2rem] fixed'>
-          {isOpen && (
-            <Modal
-              poster_path={poster_path}
-              id={id}
-              bg={backdrop_path}
-              name={name ? name : original_title}
-              overview={overview}
-              rating={vote_average}
-              date={first_air_date}
-              handlePlay={handlePlay}
-            />
-          )}
+        <div className='z-50 top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] fixed'>
+          {isOpen && <Modal modalData={modalData} />}
         </div>
       </section>
     );
