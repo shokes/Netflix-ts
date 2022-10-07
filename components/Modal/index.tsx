@@ -12,6 +12,23 @@ import { useState, useEffect } from 'react';
 import { handlePlay } from '../../helpers';
 
 const Modal = ({ modalData }: ModalType) => {
+  const dispatch = useDispatch();
+  const { list } = useSelector((store: RootState) => store.list);
+
+  const [added, setAdded] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (modalData) {
+      let newArray = list.map((item: any) => item.id);
+      if (newArray.includes(modalData.id)) {
+        setAdded(true);
+      } else {
+        setAdded(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list]);
+
   if (modalData) {
     const {
       first_air_date,
@@ -24,21 +41,6 @@ const Modal = ({ modalData }: ModalType) => {
       overview,
       vote_average,
     } = modalData;
-
-    const dispatch = useDispatch();
-    const { list } = useSelector((store: RootState) => store.list);
-
-    const [added, setAdded] = useState<boolean>(false);
-
-    useEffect(() => {
-      let newArray = list.map((item: any) => item.id);
-      if (newArray.includes(id)) {
-        setAdded(true);
-      } else {
-        setAdded(false);
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [list]);
 
     const data = {
       first_air_date,

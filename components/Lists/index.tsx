@@ -4,12 +4,14 @@ import { RootState } from '../../redux/store';
 import { openModal } from '../../redux/features/modalSlice';
 import { handleComponentModal } from '../../redux/features/homeSlice';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 const Lists = () => {
   const { list } = useSelector((store: RootState) => store.list);
   const dispatch = useDispatch();
   const { isOpen } = useSelector((store: RootState) => store.modal);
   const { modalData } = useSelector((store: RootState) => store.home);
+  const [added, setAdded] = useState<boolean>(false);
 
   if (list.length !== 0) {
     return (
