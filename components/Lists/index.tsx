@@ -29,7 +29,7 @@ const Lists = () => {
       <section className='pt-[4rem]'>
         <div className=' container'>
           <h3 className='font-bold text-2xl text-white my-10'>My List</h3>
-          <div className='grid grid-cols-5 gap-4'>
+          <div className='grid grid-cols-3 lg:grid-cols-5 gap-4'>
             {list.map((item: any) => {
               return (
                 <div
