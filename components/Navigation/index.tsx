@@ -99,7 +99,7 @@ const Navigation = ({ activePage }: NavigationTypes) => {
                         className={`cursor-pointer ${
                           activePage === item.title
                             ? 'text-white font-extrabold'
-                            : 'text-gray-300'
+                            : 'text-gray-200'
                         }`}
                       >
                         {item.title}
@@ -130,7 +130,7 @@ const Navigation = ({ activePage }: NavigationTypes) => {
                         className={`cursor-pointer ${
                           activePage === item.title
                             ? 'text-white font-extrabold'
-                            : 'text-gray-300'
+                            : 'text-gray-200'
                         }`}
                       >
                         {item.title}
