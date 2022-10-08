@@ -1,6 +1,6 @@
 # Clone of Netflix.
 
-Built with NextJS, Typescript, Redux TK and TailwindCSS. - [Live Site](https://netflix-ts-phi.vercel.app/)
+Built with NextJS, Typescript, API, Redux TK and TailwindCSS. - [Live Site](https://netflix-ts-phi.vercel.app/)
 
 ![Screenshot of live site](./screenshot.png)
 
