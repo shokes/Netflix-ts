@@ -9,4 +9,6 @@ export interface HeroType {
     id: number;
     poster_path: string;
   }[];
+
+  activePage: string;
 }

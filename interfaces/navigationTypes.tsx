@@ -9,3 +9,7 @@ export interface NavMobile {
   title: string;
   url: string;
 }
+
+export interface NavigationTypes {
+  activePage: string;
+}

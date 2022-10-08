@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { openModal } from '../../redux/features/modalSlice';
 import { handleHeroModal } from '../../redux/features/homeSlice';
 
-const Hero = ({ heroMovieProp }: HeroType) => {
+const Hero = ({ heroMovieProp, activePage }: HeroType) => {
+  
   const dispatch = useDispatch();
 
   const [randomNumber, setRandomNumber] = useState<number>(3);
@@ -46,7 +47,7 @@ const Hero = ({ heroMovieProp }: HeroType) => {
           height: '700px',
         }}
       >
-        <Navigation />
+        <Navigation activePage={activePage}/>
 
         <div className='container relative'>
           <div className='w-[23rem]  md:w-[34rem] text-white absolute top-[10rem]'>

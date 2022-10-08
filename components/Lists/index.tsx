@@ -17,7 +17,7 @@ const Lists = () => {
       <section className='pt-[10rem]'>
         <div className=' container'>
           <p className='text-white text-center text-2xl '>
-            You currently have no movies or shows added to your lists.
+            You currently have no movies or shows added to your list.
           </p>
         </div>
       </section>

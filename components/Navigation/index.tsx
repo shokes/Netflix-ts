@@ -7,8 +7,9 @@ import Link from 'next/link';
 import { NavItemsTypes, NavMobile } from '../../interfaces/navigationTypes';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
+import { NavigationTypes } from '../../interfaces/navigationTypes';
 
-const Navigation = () => {
+const Navigation = ({ activePage }: NavigationTypes) => {
   const navItems: NavItemsTypes[] = [
     {
       id: 1,
@@ -78,6 +79,7 @@ const Navigation = () => {
         <div className='container'>
           <div className='flex justify-between items-center'>
             <div className=' hidden lg:flex gap-[4rem] items-center'>
+              {/* // navigation for large screens */}
               <Link href='/'>
                 <a className='py-4'>
                   <Image
@@ -89,17 +91,26 @@ const Navigation = () => {
                 </a>
               </Link>
 
-              <ul className='flex items-center gap-[2rem]'>
+              <ul className='flex items-center gap-[2rem] list-none'>
                 {navItems.map((item) => {
                   return (
                     <Link key={item.id} href={item.url}>
-                      {item.title}
+                      <li
+                        className={`cursor-pointer ${
+                          activePage === item.title
+                            ? 'text-white font-extrabold'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        {item.title}
+                      </li>
                     </Link>
                   );
                 })}
               </ul>
             </div>
 
+            {/* Mobile navigation */}
             <div className=' flex gap-[4rem]  lg:hidden items-center'>
               <Link href='/'>
                 <a className='py-4'>
@@ -111,15 +122,23 @@ const Navigation = () => {
                   />{' '}
                 </a>
               </Link>
-              <div className='text-sm flex gap-4 items-center'>
+              <ul className='text-sm flex gap-4 items-center list-none'>
                 {navItemsMobile.map((item) => {
                   return (
                     <Link key={item.id} href={item.url}>
-                      {item.title}
+                      <li
+                        className={`cursor-pointer ${
+                          activePage === item.title
+                            ? 'text-white font-extrabold'
+                            : 'text-gray-300'
+                        }`}
+                      >
+                        {item.title}
+                      </li>
                     </Link>
                   );
                 })}
-              </div>
+              </ul>
             </div>
 
             <div className='flex items-center gap-[2rem]'>
