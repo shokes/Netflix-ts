@@ -65,7 +65,7 @@ const Modal = ({ modalData }: ModalType) => {
           }}
           className='rounded-t-lg  w-[350px] h-[200px] lg:w-[800px] lg:h-[400px] '
         >
-          <div className=' pt-[8rem] pl-[1rem] lg:pt-[16rem] lg:pl-[2rem]'>
+          <div className=' pt-[6rem]  pl-[1rem] lg:pt-[16rem] lg:pl-[2rem]'>
             <h2 className='font-bold text-xl lg:text-5xl mb-3  text-white'>
               {name ? name : original_title}
             </h2>
