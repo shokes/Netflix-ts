@@ -34,6 +34,20 @@ const Action = () => {
             loopFillGroupWithBlank={false}
             navigation={true}
             modules={[Pagination, Navigation, Scrollbar, A11y]}
+            breakpoints={{
+              1000: {
+                slidesPerView: 5,
+                slidesPerGroup: 5,
+              },
+              750: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+              0: {
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+              },
+            }}
             keyboard={{
               enabled: true,
             }}

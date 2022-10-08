@@ -33,6 +33,20 @@ const Comedy = () => {
             navigation={true}
             speed={1000}
             modules={[Pagination, Navigation]}
+            breakpoints={{
+              1000: {
+                slidesPerView: 5,
+                slidesPerGroup: 5,
+              },
+              750: {
+                slidesPerView: 4,
+                slidesPerGroup: 4,
+              },
+              0: {
+                slidesPerGroup: 3,
+                slidesPerView: 3,
+              },
+            }}
             className='mySwiper'
           >
             <div className='flex'>

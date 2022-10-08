@@ -47,8 +47,9 @@ const Hero = ({ heroMovieProp }: HeroType) => {
         }}
       >
         <Navigation />
+
         <div className='container relative'>
-          <div className='w-[34rem] text-white absolute top-[10rem]'>
+          <div className='w-[23rem]  md:w-[34rem] text-white absolute top-[10rem]'>
             <h3 className='text-6xl font-bold mb-2'>
               {name ? name : original_title}
             </h3>

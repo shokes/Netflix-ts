@@ -62,13 +62,11 @@ const Modal = ({ modalData }: ModalType) => {
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center',
-            height: '400px',
-            width: '800px',
           }}
-          className='rounded-t-lg  '
+          className='rounded-t-lg  w-[350px] h-[200px] lg:w-[800px] lg:h-[400px] '
         >
-          <div className='pt-[16rem] pl-[2rem]'>
-            <h2 className='font-bold text-5xl mb-3  text-white'>
+          <div className=' pt-[8rem] pl-[1rem] lg:pt-[16rem] lg:pl-[2rem]'>
+            <h2 className='font-bold text-xl lg:text-5xl mb-3  text-white'>
               {name ? name : original_title}
             </h2>
             <div className='flex items-center gap-5'>
@@ -103,7 +101,7 @@ const Modal = ({ modalData }: ModalType) => {
             </div>
           </div>
         </div>
-        <div className=' bg-[#141414] w-[800px] h-[12.4rem] text-white p-4 rounded-b-lg'>
+        <div className=' bg-[#141414] h-[15rem] lg:h-[12.4rem] text-white p-4 rounded-b-lg'>
           <div className='flex gap-x-3 items-center mb-2'>
             <span>
               {first_air_date
@@ -116,7 +114,9 @@ const Modal = ({ modalData }: ModalType) => {
             </span>
             <span className='font-bold text-sm '>HD</span>
           </div>
-          <p>{overview ? overview : 'Overview not available at this time.'}</p>{' '}
+          <p className='text-sm lg:text-base'>
+            {overview ? overview : 'Overview not available at this time.'}
+          </p>{' '}
         </div>
 
         <IoMdClose

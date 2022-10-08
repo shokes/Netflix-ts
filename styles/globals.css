@@ -60,3 +60,17 @@ body {
     font-size: 95%;
   }
 }
+
+select {
+  appearance: none;
+}
+
+select#xyz {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select:focus {
+  outline: none;
+}

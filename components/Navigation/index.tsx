@@ -1,9 +1,10 @@
 import logo from '../../public/Images/netflix logo.png';
 import avatar from '../../public/Images/avatar.jpeg';
+import movLogo from '../../public/Images/mobLogo.png';
 import { BsBellFill } from 'react-icons/bs';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavItemsTypes } from '../../interfaces/navigationTypes';
+import { NavItemsTypes, NavMobile } from '../../interfaces/navigationTypes';
 import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 
@@ -35,6 +36,24 @@ const Navigation = () => {
       url: '/',
     },
   ];
+
+  const navItemsMobile: NavMobile[] = [
+    {
+      id: 1,
+      title: 'TV Shows',
+      url: '/TvShows',
+    },
+    {
+      id: 2,
+      title: 'Movies',
+      url: '/Movies',
+    },
+    {
+      id: 3,
+      title: 'My List',
+      url: '/List',
+    },
+  ];
   const [ref, inView] = useInView();
 
   const [view, setView] = useState<boolean>(false);
@@ -58,7 +77,7 @@ const Navigation = () => {
         {' '}
         <div className='container'>
           <div className='flex justify-between items-center'>
-            <div className='flex gap-[4rem] items-center'>
+            <div className=' hidden lg:flex gap-[4rem] items-center'>
               <Link href='/'>
                 <a className='py-4'>
                   <Image
@@ -81,8 +100,30 @@ const Navigation = () => {
               </ul>
             </div>
 
+            <div className=' flex gap-[4rem]  lg:hidden items-center'>
+              <Link href='/'>
+                <a className='py-4'>
+                  <Image
+                    src={movLogo}
+                    alt='the netflix logo'
+                    width={24}
+                    height={30}
+                  />{' '}
+                </a>
+              </Link>
+              <div className='text-sm flex gap-4 items-center'>
+                {navItemsMobile.map((item) => {
+                  return (
+                    <Link key={item.id} href={item.url}>
+                      {item.title}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className='flex items-center gap-[2rem]'>
-              <BsBellFill className='w-[1.5rem] h-[1.5rem]' />
+              <BsBellFill className='w-[1.5rem] h-[1.5rem] hidden lg:block' />
 
               <Image
                 src={avatar}
