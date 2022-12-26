@@ -9,7 +9,7 @@
 }
 
 .container {
-  max-width: 78rem;
+  max-width: 75rem;
   margin: 0 auto;
 }
 
@@ -60,5 +60,3 @@ body {
     font-size: 95%;
   }
 }
-
-
